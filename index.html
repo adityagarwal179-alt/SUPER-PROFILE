@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Affiliate Hub | Exclusive Offers, Cashback & Guides</title>
+<title>Aditya Agarwal | Affiliate Partner & Hub</title>
 <meta name="description" content="Verified bank and app sign-up offers with cashback details and step-by-step video guides.">
 <style>
 :root{--bg:#0b1220;--panel:#121b2e;--p2:#172238;--line:#25324d;--text:#e8edf7;--muted:#9aa8c3;--acc:#2dd4bf;--accd:#0f766e;--on:#04201c;--wa:#22c55e;--tg:#229ed9;--yt:#ef4444;--warn:#f59e0b;--danger:#ef4444;--inp:#0e1626}
@@ -83,7 +83,6 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;margin:20px 0 8px}
 .feed{list-style:none;font-size:13px;color:var(--muted)}.feed li{padding:5px 0;border-bottom:1px solid var(--line)}
 .sync{font-size:12px;padding:6px 12px;border-radius:20px;border:1px solid var(--line);background:var(--panel);color:var(--muted)}
 .sync.ok{color:var(--acc);border-color:var(--acc)}.sync.busy{color:var(--warn);border-color:var(--warn)}.sync.err{color:var(--danger);border-color:var(--danger)}
-body.boot .wrap{opacity:0}.wrap{transition:opacity .25s}
 mark{background:linear-gradient(transparent 52%,rgba(245,158,11,.5) 52%);color:inherit;font-weight:800;padding:0 2px;border-radius:3px}
 .reward{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:12px 0;padding:14px 16px;border-radius:14px;background:linear-gradient(135deg,rgba(245,158,11,.22),rgba(45,212,191,.16));border:1px solid rgba(245,158,11,.55)}
 .reward .rl{font-size:11px;font-weight:700;letter-spacing:.9px;text-transform:uppercase;color:var(--warn)}
@@ -106,7 +105,7 @@ mark{background:linear-gradient(transparent 52%,rgba(245,158,11,.5) 52%);color:i
 @media(max-width:680px){.trust{grid-template-columns:1fr 1fr}.reward .rv{font-size:19px}}
 </style>
 </head>
-<body class="boot">
+<body>
 <div class="wrap">
  <div class="top">
   <div class="brand"><i></i>Affiliate Hub</div>
@@ -121,54 +120,56 @@ mark{background:linear-gradient(transparent 52%,rgba(245,158,11,.5) 52%);color:i
  </div>
  <section class="hero">
   <button class="pill adm" onclick="openProfile()" data-i="editProfile"></button>
-  <img class="avatar" id="pImg" alt="Profile photo">
-  <h1 id="pName"></h1><div class="tag-line" id="pTag"></div><p class="bio" id="pBio"></p>
-  <span class="badge" data-i="verified"></span>
+  <img class="avatar" id="pImg" src="https://github.com/adityagarwal179-alt.png" alt="Aditya Agarwal">
+  <h1 id="pName">Aditya Agarwal</h1>
+  <div class="tag-line" id="pTag">D.Pharm & BCA Student | Affiliate Partner</div>
+  <p class="bio" id="pBio">I'm Aditya Agarwal, a D.Pharm and BCA student. I share trusted banking and finance apps along with clear video guides to help you get started. Use my links below to unlock exclusive sign-up benefits.</p>
+  <span class="badge" data-i="verified">Verified Partner</span>
  </section>
  <section class="stats">
-  <div class="box stat"><b id="sCount">0</b><span data-i="sLinks"></span></div>
-  <div class="box stat"><b>100%</b><span data-i="sFree"></span></div>
-  <div class="box stat"><b id="sLive">0</b><span data-i="sLive"></span></div>
+  <div class="box stat"><b id="sCount">3</b><span data-i="sLinks">Active Offers</span></div>
+  <div class="box stat"><b>100%</b><span data-i="sFree">Free to Join</span></div>
+  <div class="box stat"><b id="sLive">3</b><span data-i="sLive">Live Offers</span></div>
  </section>
  <section class="toppick" id="topPick"></section>
- <section class="trust"><div class="box"><b>&#10003;</b><span data-i="tr1"></span></div><div class="box"><b>&#9654;</b><span data-i="tr2"></span></div><div class="box"><b>&#9733;</b><span data-i="tr3"></span></div><div class="box"><b>&#128274;</b><span data-i="tr4"></span></div></section>
- <h2 class="st" data-i="how"></h2>
+ <section class="trust"><div class="box"><b>&#10003;</b><span data-i="tr1">Step-by-step guides</span></div><div class="box"><b>&#9654;</b><span data-i="tr2">Video help for every offer</span></div><div class="box"><b>&#9733;</b><span data-i="tr3">Clear rewards, no hidden claims</span></div><div class="box"><b>&#128274;</b><span data-i="tr4">Sign-up on the provider's own app or site</span></div></section>
+ <h2 class="st" data-i="how">How It Works</h2>
  <section class="steps">
-  <div class="box step"><div class="n">1</div><h3 data-i="s1t"></h3><p data-i="s1d"></p></div>
-  <div class="box step"><div class="n">2</div><h3 data-i="s2t"></h3><p data-i="s2d"></p></div>
-  <div class="box step"><div class="n">3</div><h3 data-i="s3t"></h3><p data-i="s3d"></p></div>
+  <div class="box step"><div class="n">1</div><h3 data-i="s1t">Choose an offer</h3><p data-i="s1d">Pick the app or bank that suits you.</p></div>
+  <div class="box step"><div class="n">2</div><h3 data-i="s2t">Sign up with my link</h3><p data-i="s2d">Use my referral link to unlock the benefit.</p></div>
+  <div class="box step"><div class="n">3</div><h3 data-i="s3t">Follow the guide</h3><p data-i="s3d">Watch the video and complete each step.</p></div>
  </section>
- <section class="box sharebox"><h2 class="st" style="margin-top:0" data-i="shareTitle"></h2>
-  <p class="bio" style="margin:0 0 10px;max-width:none" data-i="shareDesc"></p>
+ <section class="box sharebox"><h2 class="st" style="margin-top:0" data-i="shareTitle">Share My Page</h2>
+  <p class="bio" style="margin:0 0 10px;max-width:none" data-i="shareDesc">Know someone who could use these offers? Share my whole profile in one tap.</p>
   <p class="bio" id="shareNote" style="color:var(--acc);font-weight:600;margin:0 0 10px;max-width:none;display:none"></p>
-  <div class="row" id="shareBtns"><button class="btn wa" data-ch="whatsapp">WhatsApp</button><button class="btn tgb" data-ch="telegram">Telegram</button><button class="btn fb" data-ch="facebook">Facebook</button><button class="btn xx" data-ch="x">X</button><button class="btn li" data-ch="linkedin">LinkedIn</button><button class="btn mail" data-ch="email" data-i="shEmail"></button><button class="btn mail" data-ch="sms">SMS</button><button class="btn copy" data-ch="copy" data-i="shCopy"></button><button class="btn more" data-ch="native" id="shNative" style="display:none" data-i="shMore"></button></div></section>
- <h2 class="st" data-i="offers"></h2>
- <div class="srow"><input class="inp" id="q" data-ph="search" oninput="renderCards()"><select class="inp" id="sortSel" aria-label="Sort" onchange="sortMode=this.value;renderCards()"><option value="feat" data-i="sFeat"></option><option value="ending" data-i="sEnding"></option><option value="az" data-i="sAz"></option></select></div>
+  <div class="row" id="shareBtns"><button class="btn wa" data-ch="whatsapp">WhatsApp</button><button class="btn tgb" data-ch="telegram">Telegram</button><button class="btn fb" data-ch="facebook">Facebook</button><button class="btn xx" data-ch="x">X</button><button class="btn li" data-ch="linkedin">LinkedIn</button><button class="btn mail" data-ch="email" data-i="shEmail">Email</button><button class="btn mail" data-ch="sms">SMS</button><button class="btn copy" data-ch="copy" data-i="shCopy">Copy Page Link</button><button class="btn more" data-ch="native" id="shNative" style="display:none" data-i="shMore">More...</button></div></section>
+ <h2 class="st" data-i="offers">Exclusive Offers</h2>
+ <div class="srow"><input class="inp" id="q" data-ph="search" placeholder="Search apps or banks..." oninput="renderCards()"><select class="inp" id="sortSel" aria-label="Sort" onchange="sortMode=this.value;renderCards()"><option value="feat" data-i="sFeat">Sort: Featured first</option><option value="ending" data-i="sEnding">Sort: Ending soon</option><option value="az" data-i="sAz">Sort: A to Z</option></select></div>
  <div class="chips" id="chips"></div>
  <div id="list"></div>
- <div class="addw"><div class="row"><button class="dash" onclick="openOffer()" data-i="addNew"></button></div></div>
- <section class="faq"><h2 class="st" data-i="faqT"></h2>
-  <details><summary data-i="q1"></summary><p data-i="a1"></p></details>
-  <details><summary data-i="q2"></summary><p data-i="a2"></p></details>
-  <details><summary data-i="q3"></summary><p data-i="a3"></p></details>
-  <details><summary data-i="q4"></summary><p data-i="a4"></p></details>
-  <div class="safe" data-i="safeNote"></div></section>
- <div class="disc" data-i="disc"></div>
- <footer><span id="yr"></span> &copy; Affiliate Hub. <span data-i="rights"></span></footer>
+ <div class="addw"><div class="row"><button class="dash" onclick="openOffer()" data-i="addNew">+ Add New Offer</button></div></div>
+ <section class="faq"><h2 class="st" data-i="faqT">Frequently Asked Questions</h2>
+  <details><summary data-i="q1">Is it free to use my link?</summary><p data-i="a1">Yes. Using my link costs you nothing extra. I may earn a commission from the provider.</p></details>
+  <details><summary data-i="q2">How do I get the benefit?</summary><p data-i="a2">Open the offer with my link, finish sign-up and KYC, and complete any condition shown under Terms & conditions.</p></details>
+  <details><summary data-i="q3">When will I receive the reward?</summary><p data-i="a3">Timing and eligibility are decided by each provider. Check the Terms & conditions on the offer card before you start.</p></details>
+  <details><summary data-i="q4">Is my data safe?</summary><p data-i="a4">You sign up directly on the provider's own app or website. I never ask for your OTP, PIN, card or password.</p></details>
+  <div class="safe" data-i="safeNote">Safety tip: never share your OTP, PIN, CVV or password with anyone, including me.</div></section>
+ <div class="disc" data-i="disc">Affiliate disclosure: I may earn a commission if you sign up through these links, at no extra cost to you. Please review each provider's terms before applying.</div>
+ <footer><span id="yr">2026</span> &copy; Affiliate Hub. <span data-i="rights">All rights reserved.</span></footer>
 </div>
 <div class="toast" id="toast"></div>
 
 <div class="ov" id="ovOffer"><div class="modal"><h3 id="mOfferT"></h3><p class="hint" data-i="autoHint"></p><div id="offerForm"></div>
- <div class="mact"><button class="pill" onclick="forceAll(offerPairs)" data-i="autoBtn"></button><span class="row"><button class="cancel" onclick="closeOv('ovOffer')" data-i="cancel"></button><button class="save" onclick="saveOffer()" data-i="save"></button></span></div></div></div>
-<div class="ov" id="ovProfile"><div class="modal"><h3 data-i="editProfile"></h3><p class="hint" data-i="autoHint"></p><div id="profileForm"></div>
- <div class="mact"><button class="pill" onclick="forceAll(profilePairs)" data-i="autoBtn"></button><span class="row"><button class="cancel" onclick="closeOv('ovProfile')" data-i="cancel"></button><button class="save" onclick="saveProfile()" data-i="save"></button></span></div></div></div>
-<div class="ov" id="ovPw"><div class="modal"><h3 data-i="adminLogin"></h3><label data-i="pwLabel"></label><input class="f" type="password" id="pw" onkeydown="if(event.key==='Enter')checkPw()">
- <div class="mact"><span></span><span class="row"><button class="cancel" onclick="closeOv('ovPw')" data-i="cancel"></button><button class="save" onclick="checkPw()" data-i="login"></button></span></div></div></div>
+ <div class="mact"><button class="pill" onclick="forceAll(offerPairs)" data-i="autoBtn"></button><span class="row"><button class="cancel" onclick="closeOv('ovOffer')" data-i="cancel">Cancel</button><button class="save" onclick="saveOffer()" data-i="save">Save</button></span></div></div></div>
+<div class="ov" id="ovProfile"><div class="modal"><h3 data-i="editProfile">Edit Profile</h3><p class="hint" data-i="autoHint"></p><div id="profileForm"></div>
+ <div class="mact"><button class="pill" onclick="forceAll(profilePairs)" data-i="autoBtn"></button><span class="row"><button class="cancel" onclick="closeOv('ovProfile')" data-i="cancel">Cancel</button><button class="save" onclick="saveProfile()" data-i="save">Save</button></span></div></div></div>
+<div class="ov" id="ovPw"><div class="modal"><h3 data-i="adminLogin">Admin Login</h3><label data-i="pwLabel">Admin password</label><input class="f" type="password" id="pw" onkeydown="if(event.key==='Enter')checkPw()">
+ <div class="mact"><span></span><span class="row"><button class="cancel" onclick="closeOv('ovPw')" data-i="cancel">Cancel</button><button class="save" onclick="checkPw()" data-i="login">Log in</button></span></div></div></div>
 
-<div class="ov" id="ovSync"><div class="modal"><h3 data-i="ghSync"></h3><p class="hint" data-i="ghHint"></p><div id="syncForm"></div>
- <div class="mact"><button class="pill" onclick="testSync()" data-i="ghTest"></button><span class="row"><button class="cancel" onclick="closeOv('ovSync')" data-i="cancel"></button><button class="save" onclick="saveSync()" data-i="save"></button></span></div>
- <div class="mact" style="margin-top:12px"><button class="pill" onclick="syncNow()" data-i="ghNow"></button><button class="pill" onclick="forgetToken()" data-i="ghForget"></button></div></div></div>
-<div class="ov" id="ovStats"><div class="modal wide"><div class="mact" style="margin:0 0 6px"><h3 data-i="analytics" style="margin:0"></h3><span class="row"><button class="pill" onclick="renderStats()" data-i="refresh"></button><button class="pill" onclick="exportCsv()" data-i="exportCsv"></button><button class="pill" onclick="clearLocal()" data-i="clearLocal"></button><button class="cancel" onclick="closeStats()">&#10005;</button></span></div><div id="statsBody"></div></div></div>
+<div class="ov" id="ovSync"><div class="modal"><h3 data-i="ghSync">GitHub Sync</h3><p class="hint" data-i="ghHint"></p><div id="syncForm"></div>
+ <div class="mact"><button class="pill" onclick="testSync()" data-i="ghTest">Test connection</button><span class="row"><button class="cancel" onclick="closeOv('ovSync')" data-i="cancel">Cancel</button><button class="save" onclick="saveSync()" data-i="save">Save</button></span></div>
+ <div class="mact" style="margin-top:12px"><button class="pill" onclick="syncNow()" data-i="ghNow">Push now</button><button class="pill" onclick="forgetToken()" data-i="ghForget">Remove token</button></div></div></div>
+<div class="ov" id="ovStats"><div class="modal wide"><div class="mact" style="margin:0 0 6px"><h3 data-i="analytics" style="margin:0">Analytics</h3><span class="row"><button class="pill" onclick="renderStats()" data-i="refresh">Refresh</button><button class="pill" onclick="exportCsv()" data-i="exportCsv">Export CSV</button><button class="pill" onclick="clearLocal()" data-i="clearLocal">Clear local data</button><button class="cancel" onclick="closeStats()">&#10005;</button></span></div><div id="statsBody"></div></div></div>
 
 <script id="seed" type="application/json">{"profile":{"name":"Aditya Agarwal","photo":"https://github.com/adityagarwal179-alt.png","tagEn":"D.Pharm & BCA Student | Affiliate Partner","tagHi":"डी.फार्मा और बीसीए छात्र | अफ़िलिएट पार्टनर","bioEn":"I'm Aditya Agarwal, a D.Pharm and BCA student. I share trusted banking and finance apps along with clear video guides to help you get started. Use my links below to unlock exclusive sign-up benefits.","bioHi":"मैं आदित्य अग्रवाल हूँ, डी.फार्मा और बीसीए का छात्र। मैं भरोसेमंद बैंकिंग और फ़ाइनेंस ऐप्स के साथ शुरुआत में मदद के लिए स्पष्ट वीडियो गाइड साझा करता हूँ। विशेष साइन-अप लाभ पाने के लिए नीचे दिए मेरे लिंक्स का उपयोग करें।"},"offers":[{"id":1,"name":"Kotak Mahindra Bank","reward":"Welcome Bonus","rewardHi":"वेलकम बोनस","perksEn":"Digital savings account in minutes\nWelcome bonus as per bank terms\nVideo guide for every step","perksHi":"मिनटों में डिजिटल बचत खाता\nबैंक की शर्तों के अनुसार वेलकम बोनस\nहर चरण के लिए वीडियो गाइड","termsEn":"Bonus and eligibility are decided by the bank. Check the bank's latest terms before applying.","termsHi":"बोनस और पात्रता बैंक तय करता है। आवेदन से पहले बैंक की ताज़ा शर्तें देखें।","catEn":"Bank Account","catHi":"बैंक खाता","benEn":"Open a savings account through my link and receive the welcome bonus offered by the bank.","benHi":"मेरे लिंक से बचत खाता खोलें और बैंक का वेलकम बोनस पाएं।","stepsEn":"Open my referral link\nEnter your mobile number and verify the OTP\nComplete KYC with Aadhaar and PAN\nFund your account to activate it","stepsHi":"मेरा रेफ़रल लिंक खोलें\nअपना मोबाइल नंबर डालें और OTP सत्यापित करें\nआधार और पैन से KYC पूरा करें\nखाता चालू करने के लिए पैसे जमा करें","link":"https://example.com/kotak-referral","video":"https://youtube.com/","expiry":"","featured":true},{"id":2,"name":"Axis Bank","reward":"Referral Rewards","rewardHi":"रेफ़रल रिवॉर्ड","perksEn":"Digital savings account\nCurrent referral rewards","perksHi":"डिजिटल बचत खाता\nमौजूदा रेफ़रल रिवॉर्ड","termsEn":"","termsHi":"","catEn":"Bank Account","catHi":"बैंक खाता","benEn":"Sign up using my link for a digital savings account and current referral rewards.","benHi":"मेरे लिंक से साइन अप करें और डिजिटल बचत खाता व रेफ़रल रिवॉर्ड पाएं।","stepsEn":"","stepsHi":"","link":"https://example.com/axis-referral","video":"","expiry":"2099-12-31","featured":false},{"id":3,"name":"Sample UPI App","reward":"Cashback after first transaction","rewardHi":"पहले लेन-देन के बाद कैशबैक","perksEn":"Quick app sign-up\nCashback after your first transaction","perksHi":"तेज़ ऐप साइन-अप\nपहले लेन-देन के बाद कैशबैक","termsEn":"","termsHi":"","catEn":"UPI / Payments","catHi":"यूपीआई / भुगतान","benEn":"Download the app with my link and earn referral cashback after your first transaction.","benHi":"मेरे लिंक से ऐप डाउनलोड करें और पहले लेन-देन के बाद रेफ़रल कैशबैक पाएं।","stepsEn":"","stepsHi":"","link":"https://example.com/upi-referral","video":"","expiry":"","featured":false}]}</script>
 
@@ -417,7 +418,7 @@ $("yr").textContent=new Date().getFullYear();
 $("shareBtns").addEventListener("click",function(e){const b=e.target.closest("[data-ch]");if(b)sharePage(b.dataset.ch)});
 if(navigator.share)$("shNative").style.display="";
 try{if(!sessionStorage.getItem("hubSeen")){sessionStorage.setItem("hubSeen","1");track("visit")}}catch(e){track("visit")}
-(function(){const fin=function(){applyLang();document.body.classList.remove("boot")};Promise.race([loadRemote(),new Promise(function(r){setTimeout(r,2500)})]).then(fin,fin)})();
+(function(){renderProfile();renderCards();applyLang();})();
 </script>
 </body>
 </html>
