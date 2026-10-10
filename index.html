@@ -1,391 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Affiliate Hub | Exclusive Offers & Guides</title>
-<style>
-:root{--bg:#0b1220;--panel:#121b2e;--p2:#172238;--line:#25324d;--text:#e8edf7;--muted:#9aa8c3;--acc:#2dd4bf;--accd:#0f766e;--on:#04201c;--wa:#22c55e;--tg:#229ed9;--yt:#ef4444;--warn:#f59e0b;--danger:#ef4444;--inp:#0e1626}
-[data-theme=light]{--bg:#f3f6fb;--panel:#fff;--p2:#f7f9fd;--line:#d9e1ef;--text:#14213d;--muted:#5b6b88;--acc:#0d9488;--accd:#0f766e;--on:#fff;--inp:#f3f6fb}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI','Noto Sans Devanagari','Mangal',system-ui,Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.55}
-.wrap{max-width:980px;margin:0 auto;padding:20px}
-button{cursor:pointer;border:none;font-family:inherit;font-weight:600;transition:.2s}
-.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}
-.brand{font-weight:700;font-size:18px;display:flex;align-items:center;gap:8px}
-.brand i{width:10px;height:10px;border-radius:50%;background:var(--acc);box-shadow:0 0 12px var(--acc)}
-.acts{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.seg{display:inline-flex;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:3px}
-.seg button{background:transparent;color:var(--muted);padding:7px 14px;border-radius:8px;font-size:13px}
-.seg button.on{background:var(--acc);color:var(--on)}
-.pill{background:var(--panel);color:var(--text);border:1px solid var(--line);padding:9px 14px;border-radius:10px;font-size:13px}
-.pill:hover{border-color:var(--acc)}.pill.on{background:var(--accd);color:#fff;border-color:var(--acc)}
-.adm{display:none}.admin .adm{display:inline-block}.admin .adm.flex{display:flex}
-.hero{background:linear-gradient(180deg,var(--panel),var(--p2));border:1px solid var(--line);border-radius:20px;padding:30px 22px;text-align:center;margin-bottom:20px;position:relative}
-.avatar{width:112px;height:112px;border-radius:50%;object-fit:cover;border:3px solid var(--acc);background:var(--inp);margin-bottom:12px}
-.hero h1{font-size:27px}.tag-line{color:var(--acc);font-weight:600;margin:2px 0 8px}
-.bio{color:var(--muted);max-width:660px;margin:0 auto 12px}
-.badge{display:inline-block;background:rgba(45,212,191,.12);color:var(--acc);border:1px solid rgba(45,212,191,.35);font-size:12px;padding:4px 12px;border-radius:20px;font-weight:600}
-.hero .pill{position:absolute;top:14px;right:14px;font-size:12px;padding:7px 12px}
-.stats,.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
-.box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
-.stat{text-align:center}.stat b{display:block;font-size:24px;color:var(--acc)}.stat span{font-size:12px;color:var(--muted)}
-.step .n{width:30px;height:30px;border-radius:50%;background:var(--acc);color:var(--on);display:flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:8px}
-.step h3{font-size:15px}.step p{font-size:13px;color:var(--muted)}
-h2.st{font-size:20px;margin:6px 0 14px;padding-left:12px;border-left:4px solid var(--acc)}
-.inp,.f{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--inp);color:var(--text);font:inherit;font-size:14px}
-.f{padding:9px 11px;margin-bottom:11px}textarea.f{min-height:66px;resize:vertical}
-.inp:focus,.f:focus{outline:2px solid var(--acc);outline-offset:1px}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 18px}
-.chip{background:var(--panel);color:var(--muted);border:1px solid var(--line);padding:6px 14px;border-radius:20px;font-size:13px}
-.chip.on{background:var(--acc);color:var(--on);border-color:var(--acc)}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:16px;transition:.25s}
-.card:hover{border-color:var(--acc)}.card.expired{opacity:.55}.card.feat{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}
-.ctop{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}
-.tg{font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;background:rgba(45,212,191,.12);color:var(--acc)}
-.tg.f1{background:var(--acc);color:var(--on)}.tg.w{background:rgba(245,158,11,.18);color:var(--warn)}.tg.d{background:rgba(239,68,68,.18);color:var(--danger)}
-.name{font-size:19px;font-weight:700}
-.ico{background:var(--p2);color:var(--text);width:34px;height:34px;border-radius:8px;border:1px solid var(--line)}
-.ico:hover{background:var(--warn);color:#000}.ico.x:hover{background:var(--danger);color:#fff}
-.ben{background:rgba(45,212,191,.08);border-left:4px solid var(--acc);border-radius:8px;padding:11px 14px;margin:12px 0}
-.ben small{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--acc);font-weight:700}
-details{margin:10px 0;border:1px solid var(--line);border-radius:10px;padding:10px 14px;background:var(--p2)}
-summary{cursor:pointer;font-weight:600;font-size:14px}details ol{margin:8px 0 2px 20px;font-size:14px;color:var(--muted)}details li{margin:4px 0}
-.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.row .inp{flex:1;min-width:190px;padding:10px 12px;font-size:13px}
-.btn{padding:10px 15px;border-radius:10px;font-size:13px;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
-.copy{background:var(--acc);color:var(--on)}.wa{background:var(--wa)}.tgb{background:var(--tg)}.yt{background:var(--yt);margin-top:10px}
-.empty{text-align:center;color:var(--muted);padding:24px}
-.addw{display:none;text-align:center;margin:22px 0}.admin .addw{display:block}
-.addw .row{justify-content:center}.dash{background:transparent;color:var(--acc);border:2px dashed var(--acc);padding:13px 24px;border-radius:12px;font-size:15px}
-.disc{margin-top:28px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;font-size:12.5px;color:var(--muted);background:var(--panel)}
-footer{text-align:center;color:var(--muted);font-size:12.5px;margin:20px 0 8px}
-.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--acc);color:var(--on);padding:11px 22px;border-radius:30px;font-weight:600;font-size:14px;opacity:0;pointer-events:none;transition:.3s;z-index:2000;max-width:90vw;text-align:center}
-.toast.show{opacity:1;transform:translateX(-50%)}
-.ov{display:none;position:fixed;inset:0;background:rgba(3,7,18,.7);align-items:center;justify-content:center;padding:16px;z-index:1000}
-.ov.show{display:flex}
-.modal{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;width:100%;max-width:480px;max-height:92vh;overflow-y:auto}
-.modal h3{color:var(--acc);margin-bottom:6px}.hint{font-size:12px;color:var(--muted);margin-bottom:12px}
-.modal label{display:block;font-size:12px;color:var(--muted);margin-bottom:3px}
-.chk{display:flex;gap:8px;align-items:center;margin-bottom:12px;font-size:14px}.chk input{width:auto;margin:0}
-.mact{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:4px}
-.cancel{background:var(--p2);color:var(--text);padding:10px 16px;border-radius:9px}.save{background:var(--acc);color:var(--on);padding:10px 18px;border-radius:9px}
-@media(max-width:680px){.stats,.steps{grid-template-columns:1fr}.hero h1{font-size:22px}.hero .pill{position:static;margin-bottom:10px}}
-.modal.wide{max-width:780px}.sharebox{margin-bottom:24px}
-.fb{background:#1877f2}.xx{background:#111;border:1px solid #333}.li{background:#0a66c2}.mail{background:#6b7280}.more{background:var(--accd)}.go{background:#f59e0b;color:#1a1100}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin:12px 0}
-.kpi{background:var(--p2);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center}.kpi b{display:block;font-size:22px;color:var(--acc)}.kpi span{font-size:11px;color:var(--muted)}
-.sc{overflow-x:auto}.tbl{width:100%;border-collapse:collapse;font-size:13px;margin:6px 0 14px}.tbl th,.tbl td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:right}.tbl th:first-child,.tbl td:first-child{text-align:left}.tbl th{color:var(--muted);font-weight:600}
-.sh4{font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.7px;margin:14px 0 6px}
-.bars{display:flex;gap:8px;align-items:flex-end;height:110px;margin:6px 0 4px}.bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;font-size:11px;color:var(--muted)}.bar i{display:block;width:70%;background:var(--acc);border-radius:4px 4px 0 0;min-height:2px}
-.feed{list-style:none;font-size:13px;color:var(--muted)}.feed li{padding:5px 0;border-bottom:1px solid var(--line)}
-.sync{font-size:12px;padding:6px 12px;border-radius:20px;border:1px solid var(--line);background:var(--panel);color:var(--muted)}
-.sync.ok{color:var(--acc);border-color:var(--acc)}.sync.busy{color:var(--warn);border-color:var(--warn)}.sync.err{color:var(--danger);border-color:var(--danger)}
-body.boot .wrap{opacity:0}.wrap{transition:opacity .25s}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Affiliate Hub</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary: #00ff88;
+            --secondary: #00d2ff;
+            --dark: #0a0e17;
+            --card-bg: #141a29;
+            --text: #ffffff;
+            --accent: #ff0055;
+            --highlight: #ffd700;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            background: linear-gradient(135deg, var(--dark) 0%, #1f283d 100%);
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .tagline {
+            color: #8c9bae;
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Features Section */
+        .benefits-container {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            padding: 2rem 1rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .benefit-card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            width: 280px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #1f283d;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 210, 255, 0.2);
+            border-color: var(--secondary);
+        }
+
+        .benefit-card h3 {
+            margin: 0.5rem 0;
+            color: var(--primary);
+        }
+
+        .benefit-card p {
+            color: #8c9bae;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        /* Dynamic Offer Highlight Banner */
+        .offer-banner {
+            background: linear-gradient(45deg, var(--accent), #ff5500);
+            color: white;
+            padding: 1.2rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin: 1rem 1rem 2rem 1rem;
+            box-shadow: 0 10px 25px rgba(255, 0, 85, 0.4);
+            text-align: center;
+            animation: pulse 2s infinite;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .offer-banner span {
+            color: var(--highlight);
+            text-decoration: underline;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        /* Offers/Links Container */
+        .links-container {
+            width: 100%;
+            max-width: 800px;
+            padding: 0 1rem 3rem 1rem;
+        }
+
+        .link-item {
+            background-color: var(--card-bg);
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #1f283d;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .link-item:hover {
+            background-color: #1a2233;
+            border-color: var(--primary);
+        }
+
+        .link-content h3 {
+            margin: 0 0 0.5rem 0;
+            color: var(--text);
+            font-size: 1.3rem;
+        }
+
+        .link-content .benefit-text {
+            margin: 0;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .action-button {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: var(--dark);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 255, 136, 0.3);
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .action-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 255, 136, 0.5);
+        }
+
+        @media (max-width: 600px) {
+            .link-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            .action-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
-<body class="boot">
-<div class="wrap">
- <div class="top">
-  <div class="brand"><i></i>Affiliate Hub</div>
-  <div class="acts">
-   <div class="seg"><button id="bEn" onclick="setLang('en')">English</button><button id="bHi" onclick="setLang('hi')">हिन्दी</button></div>
-   <button class="pill" id="bTheme" onclick="toggleTheme()"></button>
-   <button class="pill adm" onclick="openStats()" data-i="analytics"></button>
-   <button class="pill adm" onclick="openSync()" data-i="ghSync"></button><span class="sync adm" id="syncSt"></span>
-   <button class="pill adm" id="bExport" onclick="exportPage()" data-i="export"></button>
-   <button class="pill" id="bAdmin" onclick="toggleAdmin()"></button>
-  </div>
- </div>
- <section class="hero">
-  <button class="pill adm" onclick="openProfile()" data-i="editProfile"></button>
-  <img class="avatar" id="pImg" alt="Profile photo">
-  <h1 id="pName"></h1><div class="tag-line" id="pTag"></div><p class="bio" id="pBio"></p>
-  <span class="badge" data-i="verified"></span>
- </section>
- <section class="stats">
-  <div class="box stat"><b id="sCount">0</b><span data-i="sLinks"></span></div>
-  <div class="box stat"><b>100%</b><span data-i="sFree"></span></div>
-  <div class="box stat"><b id="sLive">0</b><span data-i="sLive"></span></div>
- </section>
- <h2 class="st" data-i="how"></h2>
- <section class="steps">
-  <div class="box step"><div class="n">1</div><h3 data-i="s1t"></h3><p data-i="s1d"></p></div>
-  <div class="box step"><div class="n">2</div><h3 data-i="s2t"></h3><p data-i="s2d"></p></div>
-  <div class="box step"><div class="n">3</div><h3 data-i="s3t"></h3><p data-i="s3d"></p></div>
- </section>
- <section class="box sharebox"><h2 class="st" style="margin-top:0" data-i="shareTitle"></h2>
-  <p class="bio" style="margin:0 0 10px;max-width:none" data-i="shareDesc"></p>
-  <p class="bio" id="shareNote" style="color:var(--acc);font-weight:600;margin:0 0 10px;max-width:none;display:none"></p>
-  <div class="row" id="shareBtns"><button class="btn wa" data-ch="whatsapp">WhatsApp</button><button class="btn tgb" data-ch="telegram">Telegram</button><button class="btn fb" data-ch="facebook">Facebook</button><button class="btn xx" data-ch="x">X</button><button class="btn li" data-ch="linkedin">LinkedIn</button><button class="btn mail" data-ch="email" data-i="shEmail"></button><button class="btn mail" data-ch="sms">SMS</button><button class="btn copy" data-ch="copy" data-i="shCopy"></button><button class="btn more" data-ch="native" id="shNative" style="display:none" data-i="shMore"></button></div></section>
- <h2 class="st" data-i="offers"></h2>
- <input class="inp" id="q" data-ph="search" oninput="renderCards()">
- <div class="chips" id="chips"></div>
- <div id="list"></div>
- <div class="addw"><div class="row"><button class="dash" onclick="openOffer()" data-i="addNew"></button></div></div>
- <div class="disc" data-i="disc"></div>
- <footer><span id="yr"></span> &copy; Affiliate Hub. <span data-i="rights"></span></footer>
-</div>
-<div class="toast" id="toast"></div>
+<body>
 
-<div class="ov" id="ovOffer"><div class="modal"><h3 id="mOfferT"></h3><p class="hint" data-i="autoHint"></p><div id="offerForm"></div>
- <div class="mact"><button class="pill" onclick="forceAll(offerPairs)" data-i="autoBtn"></button><span class="row"><button class="cancel" onclick="closeOv('ovOffer')" data-i="cancel"></button><button class="save" onclick="saveOffer()" data-i="save"></button></span></div></div></div>
-<div class="ov" id="ovProfile"><div class="modal"><h3 data-i="editProfile"></h3><p class="hint" data-i="autoHint"></p><div id="profileForm"></div>
- <div class="mact"><button class="pill" onclick="forceAll(profilePairs)" data-i="autoBtn"></button><span class="row"><button class="cancel" onclick="closeOv('ovProfile')" data-i="cancel"></button><button class="save" onclick="saveProfile()" data-i="save"></button></span></div></div></div>
-<div class="ov" id="ovPw"><div class="modal"><h3 data-i="adminLogin"></h3><label data-i="pwLabel"></label><input class="f" type="password" id="pw" onkeydown="if(event.key==='Enter')checkPw()">
- <div class="mact"><span></span><span class="row"><button class="cancel" onclick="closeOv('ovPw')" data-i="cancel"></button><button class="save" onclick="checkPw()" data-i="login"></button></span></div></div></div>
+    <header>
+        <h1>Exclusive Affiliate Hub</h1>
+        <p class="tagline">100% Digital • Instant Verification • Direct Benefits</p>
+    </header>
 
-<div class="ov" id="ovSync"><div class="modal"><h3 data-i="ghSync"></h3><p class="hint" data-i="ghHint"></p><div id="syncForm"></div>
- <div class="mact"><button class="pill" onclick="testSync()" data-i="ghTest"></button><span class="row"><button class="cancel" onclick="closeOv('ovSync')" data-i="cancel"></button><button class="save" onclick="saveSync()" data-i="save"></button></span></div>
- <div class="mact" style="margin-top:12px"><button class="pill" onclick="syncNow()" data-i="ghNow"></button><button class="pill" onclick="forgetToken()" data-i="ghForget"></button></div></div></div>
-<div class="ov" id="ovStats"><div class="modal wide"><div class="mact" style="margin:0 0 6px"><h3 data-i="analytics" style="margin:0"></h3><span class="row"><button class="pill" onclick="renderStats()" data-i="refresh"></button><button class="pill" onclick="exportCsv()" data-i="exportCsv"></button><button class="pill" onclick="clearLocal()" data-i="clearLocal"></button><button class="cancel" onclick="closeStats()">&#10005;</button></span></div><div id="statsBody"></div></div></div>
+    <!-- Key Benefits Features -->
+    <div class="benefits-container">
+        <div class="benefit-card">
+            <h3>⚡ Hassle-Free</h3>
+            <p>No paper forms or bank visits. Complete everything online in under 5 minutes.</p>
+        </div>
+        <div class="benefit-card">
+            <h3>📱 100% Digital Process</h3>
+            <p>Instant E-KYC and digital onboarding directly from your phone or PC.</p>
+        </div>
+        <div class="benefit-card">
+            <h3>🔒 Verified & Secure</h3>
+            <p>Official bank partner referral links ensuring maximum safety and privacy.</p>
+        </div>
+    </div>
 
-<script id="seed" type="application/json">{"profile":{"name":"Aditya Agarwal","photo":"data:image/jpeg;base64,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","tagEn":"D.Pharm & BCA Student | Affiliate Partner","tagHi":"डी.फार्मा और बीसीए छात्र | अफ़िलिएट पार्टनर","bioEn":"I'm Aditya Agarwal, a D.Pharm and BCA student. I share trusted banking and finance apps along with clear video guides to help you get started. Use my links below to unlock exclusive sign-up benefits.","bioHi":"मैं आदित्य अग्रवाल हूँ, डी.फार्मा और बीसीए का छात्र। मैं भरोसेमंद बैंकिंग और फ़ाइनेंस ऐप्स के साथ शुरुआत में मदद के लिए स्पष्ट वीडियो गाइड साझा करता हूँ। विशेष साइन-अप लाभ पाने के लिए नीचे दिए मेरे लिंक्स का उपयोग करें।"},"offers":[{"id":1,"name":"Kotak Mahindra Bank","catEn":"Bank Account","catHi":"बैंक खाता","benEn":"Open a savings account through my link and receive the welcome bonus offered by the bank.","benHi":"मेरे लिंक से बचत खाता खोलें और बैंक का वेलकम बोनस पाएं।","stepsEn":"Open my referral link\nEnter your mobile number and verify the OTP\nComplete KYC with Aadhaar and PAN\nFund your account to activate it","stepsHi":"मेरा रेफ़रल लिंक खोलें\nअपना मोबाइल नंबर डालें और OTP सत्यापित करें\nआधार और पैन से KYC पूरा करें\nखाता चालू करने के लिए पैसे जमा करें","link":"https://example.com/kotak-referral","video":"https://youtube.com/","expiry":"","featured":true},{"id":2,"name":"Axis Bank","catEn":"Bank Account","catHi":"बैंक खाता","benEn":"Sign up using my link for a digital savings account and current referral rewards.","benHi":"मेरे लिंक से साइन अप करें और डिजिटल बचत खाता व रेफ़रल रिवॉर्ड पाएं।","stepsEn":"","stepsHi":"","link":"https://example.com/axis-referral","video":"","expiry":"2099-12-31","featured":false},{"id":3,"name":"Sample UPI App","catEn":"UPI / Payments","catHi":"यूपीआई / भुगतान","benEn":"Download the app with my link and earn referral cashback after your first transaction.","benHi":"मेरे लिंक से ऐप डाउनलोड करें और पहले लेन-देन के बाद रेफ़रल कैशबैक पाएं।","stepsEn":"","stepsHi":"","link":"https://example.com/upi-referral","video":"","expiry":"","featured":false}]}</script>
+    <!-- Dynamic Highlight Banner (JavaScript automatically fills this) -->
+    <div class="offer-banner" id="dynamicBanner">
+        🔥 Featured Offer: Loading best bank deals...
+    </div>
 
-<script>
-const ORIGINAL="<!DOCTYPE html>\n"+document.documentElement.outerHTML;
-const ADMIN_HASH="1718b001eff86f0a7eda2e6ce56aed6ff9f67de635ecacec6f11d97f28af5011"; /* SHA-256 of the admin password (not the password itself) */
-/* Real-time analytics from ALL visitors: paste your Firebase Realtime Database URL, e.g. "https://your-project-default-rtdb.firebaseio.com" (leave "" for this-device-only counts). */
-const FIREBASE_URL="";
-/* Public address where you host this page (used in shared links), e.g. "https://yourname.github.io/hub/". Leave "" to use the current address. */
-const PUBLIC_URL="";
-const T={en:{ghSync:"GitHub Sync",ghHint:"Every save is committed to your repository as data.json, so all visitors see it. Use a fine-grained token limited to this one repository (Contents: Read and write). The token stays only in this browser.",ghOwner:"GitHub username / owner",ghRepo:"Repository name",ghBranch:"Branch",ghToken:"Access token (fine-grained)",ghTest:"Test connection",ghNow:"Push now",ghForget:"Remove token",ghOff:"Sync: not set up",ghIdle:"Sync: ready",ghBusy:"Syncing...",ghOk:"Synced",ghErr:"Sync failed",tGhSaved:"Sync settings saved",tGhOk:"Connection OK",tGhFail:"Connection failed. Check owner, repo, branch and token",tGhErr:"GitHub sync failed. Hover the status for details",tGhPushed:"Pushed to GitHub. Live for visitors in about a minute",tGhNone:"GitHub sync is not set up, so changes stay in this browser only",tGhNeed:"Fill owner, repo and token first",tGhGone:"Token removed",tGhPulled:"Loaded latest data from GitHub",tPwHttps:"Login needs a secure (https) page",adminLogin:"Admin Login",analytics:"Analytics",shareTitle:"Share My Page",shareDesc:"Know someone who could use these offers? Share my whole profile in one tap.",shCopy:"Copy Page Link",shMore:"More...",shEmail:"Email",openOffer:"Get Offer",tNoUrl:"Tip: this file is opened locally. Set PUBLIC_URL to your hosted page so shared links work.",pNoteEn:"Share bonus note (English, optional)",pNoteHi:"Share bonus note (Hindi, optional)",refresh:"Refresh",exportCsv:"Export CSV",clearLocal:"Clear local data",confirmClear:"Clear the data saved on this device? Live data (if connected) is not affected.",liveTag:"LIVE: all visitors",localTag:"This device only",localNote:"Real-time data from all visitors needs a free Firebase database: set FIREBASE_URL in the file. Until then, only this browser's activity is counted (your own admin activity is never counted).",stVisits:"Visits",stUniq:"Unique visitors",stClicks:"Offer clicks",stCopies:"Link copies",stShares:"Offer shares",stPageShares:"Page shares",stVideos:"Video views",perOffer:"Performance by offer",colOffer:"Offer",colClicks:"Clicks",colCopies:"Copies",colShares:"Shares",colVideos:"Videos",last7:"Last 7 days (visits + actions)",channels:"Share channels",referrers:"Top referrers (visits via shared links)",recent:"Recent activity",noData:"No data yet.",updated:"Updated",tStatErr:"Could not load data. Check your connection and FIREBASE_URL.",ev_visit:"Visit",ev_click:"Offer click",ev_copy:"Link copied",ev_share:"Offer shared",ev_video:"Video opened",ev_pageShare:"Page shared",pageShare:n=>`Check out ${n}'s page for exclusive bank & app sign-up offers with video guides:`,adminOn:"Admin: ON (Log out)",verified:"Verified Partner",sLinks:"Active Offers",sFree:"Free to Join",sLive:"Live Offers",how:"How It Works",s1t:"Choose an offer",s1d:"Pick the app or bank that suits you.",s2t:"Sign up with my link",s2d:"Use my referral link to unlock the benefit.",s3t:"Follow the guide",s3d:"Watch the video and complete each step.",offers:"Exclusive Offers",search:"Search apps or banks...",all:"All",benefit:"Your benefit",copy:"Copy Link",steps:"How to get started",watch:"Watch Video Guide",none:"No offers found.",addNew:"+ Add New Offer",editProfile:"Edit Profile",export:"Download Updated Page",disc:"Affiliate disclosure: I may earn a commission if you sign up through these links, at no extra cost to you. Please review each provider's terms before applying.",rights:"All rights reserved.",featured:"Featured",expired:"Expired",endsIn:"Ends in {n} day(s)",validTill:"Valid till {d}",light:"Light",dark:"Dark",autoHint:"Type in English. Hindi fills in automatically; edit it any time.",autoBtn:"Auto-translate all",cancel:"Cancel",save:"Save",login:"Log in",pwLabel:"Admin password",addT:"Add New Offer",editT:"Edit Offer",translating:"Translating...",fName:"App / Bank name",fCatEn:"Category (English)",fCatHi:"Category (Hindi)",fBenEn:"Benefit (English)",fBenHi:"Benefit (Hindi)",fStepsEn:"Steps, one per line (English)",fStepsHi:"Steps, one per line (Hindi)",fLink:"Affiliate link",fVideo:"YouTube video link (optional)",fExpiry:"Offer end date (optional)",fFeat:"Feature this offer at the top",pName:"Name",pPhoto:"Photo URL",pTagEn:"Tagline (English)",pTagHi:"Tagline (Hindi)",pBioEn:"Bio (English)",pBioHi:"Bio (Hindi)",tCopied:"Link copied",tCopyFail:"Copy failed. Please copy manually.",tWrong:"Incorrect password",tIn:"Admin mode enabled",tOut:"Logged out",tSaved:"Saved",tAdded:"Offer added",tDel:"Offer deleted",tReq:"Name and a valid link (https://...) are required",tOff:"Offline translation used (partial). Please review the Hindi.",tExp:"Updated page downloaded. Replace your old file with it to keep changes.",confirmDel:"Delete this offer? This cannot be undone.",share:(n,l)=>`Sign up for ${n} using my link and get an exclusive benefit: ${l}`},
-hi:{ghSync:"GitHub सिंक",ghHint:"हर सेव आपकी रिपॉज़िटरी में data.json के रूप में कमिट होता है, ताकि सभी विज़िटर उसे देखें। सिर्फ़ इसी रिपॉज़िटरी तक सीमित fine-grained टोकन इस्तेमाल करें (Contents: Read and write)। टोकन सिर्फ़ इसी ब्राउज़र में रहता है।",ghOwner:"GitHub यूज़रनेम / ओनर",ghRepo:"रिपॉज़िटरी का नाम",ghBranch:"ब्रांच",ghToken:"एक्सेस टोकन (fine-grained)",ghTest:"कनेक्शन टेस्ट करें",ghNow:"अभी पुश करें",ghForget:"टोकन हटाएं",ghOff:"सिंक: सेट नहीं",ghIdle:"सिंक: तैयार",ghBusy:"सिंक हो रहा है...",ghOk:"सिंक हो गया",ghErr:"सिंक विफल",tGhSaved:"सिंक सेटिंग सहेजी गई",tGhOk:"कनेक्शन सही है",tGhFail:"कनेक्शन विफल। ओनर, रेपो, ब्रांच और टोकन जाँचें",tGhErr:"GitHub सिंक विफल। विवरण के लिए स्टेटस पर होवर करें",tGhPushed:"GitHub पर पुश हुआ। विज़िटर्स को करीब एक मिनट में दिखेगा",tGhNone:"GitHub सिंक सेट नहीं है, इसलिए बदलाव सिर्फ़ इसी ब्राउज़र में रहेंगे",tGhNeed:"पहले ओनर, रेपो और टोकन भरें",tGhGone:"टोकन हटा दिया गया",tGhPulled:"GitHub से ताज़ा डेटा लोड हुआ",tPwHttps:"लॉगिन के लिए सुरक्षित (https) पेज चाहिए",adminLogin:"एडमिन लॉगिन",analytics:"एनालिटिक्स",shareTitle:"मेरा पेज शेयर करें",shareDesc:"क्या कोई जानकार इन ऑफ़र से फ़ायदा उठा सकता है? मेरी पूरी प्रोफ़ाइल एक टैप में शेयर करें।",shCopy:"पेज लिंक कॉपी करें",shMore:"और...",shEmail:"ईमेल",openOffer:"ऑफ़र पाएं",tNoUrl:"सुझाव: यह फ़ाइल लोकल खुली है। शेयर लिंक काम करें इसके लिए PUBLIC_URL में अपने होस्ट किए पेज का पता डालें।",pNoteEn:"शेयर बोनस नोट (अंग्रेज़ी, वैकल्पिक)",pNoteHi:"शेयर बोनस नोट (हिन्दी, वैकल्पिक)",refresh:"रीफ़्रेश",exportCsv:"CSV निर्यात",clearLocal:"लोकल डेटा साफ़ करें",confirmClear:"इस डिवाइस पर सहेजा डेटा साफ़ करें? लाइव डेटा (अगर जुड़ा है) पर असर नहीं पड़ेगा।",liveTag:"लाइव: सभी विज़िटर",localTag:"सिर्फ़ यह डिवाइस",localNote:"सभी विज़िटर्स का रियल-टाइम डेटा पाने के लिए फ़ाइल में मुफ़्त Firebase डेटाबेस का FIREBASE_URL डालें। तब तक सिर्फ़ इसी ब्राउज़र की गतिविधि गिनी जाती है (एडमिन की अपनी गतिविधि कभी नहीं गिनी जाती)।",stVisits:"विज़िट",stUniq:"यूनिक विज़िटर",stClicks:"ऑफ़र क्लिक",stCopies:"लिंक कॉपी",stShares:"ऑफ़र शेयर",stPageShares:"पेज शेयर",stVideos:"वीडियो व्यू",perOffer:"ऑफ़र के अनुसार प्रदर्शन",colOffer:"ऑफ़र",colClicks:"क्लिक",colCopies:"कॉपी",colShares:"शेयर",colVideos:"वीडियो",last7:"पिछले 7 दिन (विज़िट + गतिविधि)",channels:"शेयर चैनल",referrers:"शीर्ष रेफ़रर (शेयर लिंक से आए विज़िट)",recent:"हाल की गतिविधि",noData:"अभी कोई डेटा नहीं।",updated:"अपडेट",tStatErr:"डेटा लोड नहीं हो सका। इंटरनेट और FIREBASE_URL जाँचें।",ev_visit:"विज़िट",ev_click:"ऑफ़र क्लिक",ev_copy:"लिंक कॉपी हुआ",ev_share:"ऑफ़र शेयर हुआ",ev_video:"वीडियो खुला",ev_pageShare:"पेज शेयर हुआ",pageShare:n=>`${n} का पेज देखें: बैंक और ऐप साइन-अप के विशेष ऑफ़र, वीडियो गाइड के साथ:`,adminOn:"एडमिन: चालू (लॉग आउट)",verified:"सत्यापित पार्टनर",sLinks:"सक्रिय ऑफ़र",sFree:"जुड़ना निःशुल्क",sLive:"चालू ऑफ़र",how:"यह कैसे काम करता है",s1t:"ऑफ़र चुनें",s1d:"अपनी पसंद का ऐप या बैंक चुनें।",s2t:"मेरे लिंक से साइन अप करें",s2d:"लाभ पाने के लिए मेरा रेफ़रल लिंक इस्तेमाल करें।",s3t:"गाइड फ़ॉलो करें",s3d:"वीडियो देखें और हर चरण पूरा करें।",offers:"विशेष ऑफ़र",search:"ऐप या बैंक खोजें...",all:"सभी",benefit:"आपका लाभ",copy:"लिंक कॉपी करें",steps:"शुरू कैसे करें",watch:"वीडियो गाइड देखें",none:"कोई ऑफ़र नहीं मिला।",addNew:"+ नया ऑफ़र जोड़ें",editProfile:"प्रोफ़ाइल संपादित करें",export:"अपडेटेड पेज डाउनलोड करें",disc:"अफ़िलिएट खुलासा: इन लिंक्स से साइन अप करने पर मुझे कमीशन मिल सकता है, आपको कोई अतिरिक्त शुल्क नहीं लगेगा। आवेदन से पहले हर प्रदाता की शर्तें पढ़ें।",rights:"सर्वाधिकार सुरक्षित।",featured:"फ़ीचर्ड",expired:"समाप्त",endsIn:"{n} दिन में समाप्त",validTill:"{d} तक मान्य",light:"लाइट",dark:"डार्क",autoHint:"अंग्रेज़ी में लिखें। हिन्दी अपने आप भर जाएगी; आप कभी भी बदल सकते हैं।",autoBtn:"सब अपने आप अनुवाद करें",cancel:"रद्द करें",save:"सहेजें",login:"लॉग इन",pwLabel:"एडमिन पासवर्ड",addT:"नया ऑफ़र जोड़ें",editT:"ऑफ़र संपादित करें",translating:"अनुवाद हो रहा है...",fName:"ऐप / बैंक का नाम",fCatEn:"श्रेणी (अंग्रेज़ी)",fCatHi:"श्रेणी (हिन्दी)",fBenEn:"लाभ (अंग्रेज़ी)",fBenHi:"लाभ (हिन्दी)",fStepsEn:"चरण, हर लाइन में एक (अंग्रेज़ी)",fStepsHi:"चरण, हर लाइन में एक (हिन्दी)",fLink:"अफ़िलिएट लिंक",fVideo:"यूट्यूब वीडियो लिंक (वैकल्पिक)",fExpiry:"ऑफ़र की अंतिम तारीख (वैकल्पिक)",fFeat:"इस ऑफ़र को सबसे ऊपर दिखाएं",pName:"नाम",pPhoto:"फ़ोटो URL",pTagEn:"टैगलाइन (अंग्रेज़ी)",pTagHi:"टैगलाइन (हिन्दी)",pBioEn:"परिचय (अंग्रेज़ी)",pBioHi:"परिचय (हिन्दी)",tCopied:"लिंक कॉपी हो गया",tCopyFail:"कॉपी नहीं हुआ। मैन्युअली कॉपी करें।",tWrong:"गलत पासवर्ड",tIn:"एडमिन मोड चालू",tOut:"लॉग आउट हो गए",tSaved:"सहेजा गया",tAdded:"ऑफ़र जोड़ा गया",tDel:"ऑफ़र हटाया गया",tReq:"नाम और सही लिंक (https://...) ज़रूरी हैं",tOff:"ऑफ़लाइन अनुवाद (आंशिक) हुआ। कृपया हिन्दी जाँच लें।",tExp:"अपडेटेड पेज डाउनलोड हो गया। बदलाव रखने के लिए पुरानी फ़ाइल इससे बदल दें।",confirmDel:"क्या यह ऑफ़र हटाना है? इसे वापस नहीं किया जा सकेगा।",share:(n,l)=>`${n} के लिए मेरे लिंक से साइन अप करें और विशेष लाभ पाएं: ${l}`}};
+    <!-- Referral / Bank Offers List -->
+    <div class="links-container" id="offersList">
+        
+        <!-- Offer 1 -->
+        <div class="link-item" data-featured="true">
+            <div class="link-content">
+                <h3>Axis Bank Savings Account</h3>
+                <p class="benefit-text">🎁 Benefit: Sign up using my link for a digital savings account and earn cashback/rewards directly!</p>
+            </div>
+            <a href="https://example.com/axis-referral" target="_blank" class="action-button">Open Account</a>
+        </div>
 
-/*PURE_START*/
-const DICT=[["bank account","बैंक खाता"],["savings account","बचत खाता"],["current account","चालू खाता"],["demat account","डीमैट खाता"],["credit card","क्रेडिट कार्ड"],["debit card","डेबिट कार्ड"],["zero balance","ज़ीरो बैलेंस"],["welcome bonus","वेलकम बोनस"],["mobile number","मोबाइल नंबर"],["aadhaar","आधार"],["pan","पैन"],["upi","यूपीआई"],["payments","भुगतान"],["payment","भुगतान"],["cashback","कैशबैक"],["bonus","बोनस"],["referral","रेफ़रल"],["rewards","रिवॉर्ड"],["reward","रिवॉर्ड"],["investment","निवेश"],["insurance","बीमा"],["loan","लोन"],["shopping","शॉपिंग"],["wallet","वॉलेट"],["trading","ट्रेडिंग"],["account","खाता"],["bank","बैंक"],["offer","ऑफ़र"],["app","ऐप"],["link","लिंक"],["free","निःशुल्क"],["open","खोलें"]];
-function offlineTranslate(text){let out=text,hit=false;DICT.slice().sort((a,b)=>b[0].length-a[0].length).forEach(function(p){const re=new RegExp("\\b"+p[0].replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"\\b","gi");const before=out;out=out.replace(re,p[1]);if(out!==before)hit=true;});return hit?out:text}
-function splitChunks(text,max){const parts=text.match(/[^.!?।]+[.!?।]*\s*/g)||[text];const out=[];let cur="";parts.forEach(function(s){while(s.length>max){if(cur){out.push(cur);cur=""}out.push(s.slice(0,max));s=s.slice(max)}if((cur+s).length>max){out.push(cur);cur=s}else cur+=s});if(cur.trim())out.push(cur);return out.map(function(x){return x.trim()}).filter(Boolean)}
-function daysLeft(exp,now){const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(exp||"");if(!m)return null;const a=Date.UTC(+m[1],+m[2]-1,+m[3]);const b=Date.UTC(now.getFullYear(),now.getMonth(),now.getDate());return Math.round((a-b)/86400000)}
-/*PURE_END*/
+        <!-- Offer 2 -->
+        <div class="link-item" data-featured="false">
+            <div class="link-content">
+                <h3>UPI Rewards Program</h3>
+                <p class="benefit-text">🎁 Benefit: Download the app with my link and earn instant referral cashback on first UPI transaction.</p>
+            </div>
+            <a href="https://example.com/upi-referral" target="_blank" class="action-button">Claim Offer</a>
+        </div>
 
-const $=id=>document.getElementById(id);
-const SEED=JSON.parse($("seed").textContent);
-let profile=SEED.profile,offers=SEED.offers,lang="en",isAdmin=false,editId=null,activeCat="";
-try{const s=localStorage.getItem("hubLang");if(s==="hi"||s==="en")lang=s;const th=localStorage.getItem("hubTheme");if(th==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}
-const t=k=>T[lang][k]!==undefined?T[lang][k]:T.en[k];
-const esc=s=>{const d=document.createElement("div");d.textContent=s==null?"":s;return d.innerHTML};
-const safeUrl=u=>/^https?:\/\//i.test(u)?u:"";
-const safeImg=u=>/^(https?:\/\/|data:image\/(jpeg|png|webp);base64,)/i.test(u)?u:"";
-function toast(k){const el=$("toast");el.textContent=t(k);el.classList.add("show");clearTimeout(toast.h);toast.h=setTimeout(()=>el.classList.remove("show"),2600)}
-const openOv=id=>$(id).classList.add("show"),closeOv=id=>$(id).classList.remove("show");
-const DEF_IMG="data:image/svg+xml;utf8,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><rect width="120" height="120" fill="#172238"/><circle cx="60" cy="46" r="22" fill="#2dd4bf"/><path d="M16 112c4-26 26-38 44-38s40 12 44 38z" fill="#2dd4bf"/></svg>');
+    </div>
 
-/* ---------- auto translation ---------- */
-async function translateOnline(text){const out=[];for(const c of splitChunks(text,450)){const ctl=new AbortController();const h=setTimeout(()=>ctl.abort(),7000);try{const r=await fetch("https://api.mymemory.translated.net/get?q="+encodeURIComponent(c)+"&langpair=en|hi",{signal:ctl.signal});if(!r.ok)throw new Error("http");const j=await r.json();const tx=j&&j.responseData&&j.responseData.translatedText;if(!tx||Number(j.responseStatus)!==200||/MYMEMORY WARNING/i.test(tx))throw new Error("bad");out.push(tx)}finally{clearTimeout(h)}}return out.join(" ")}
-async function translateText(text){const res=[];let offline=false;for(const ln of text.split("\n")){if(!ln.trim()){res.push("");continue}if(!offline){try{res.push(await translateOnline(ln.trim()));continue}catch(e){offline=true}}res.push(offlineTranslate(ln.trim()))}return{text:res.join("\n"),offline:offline}}
-function runPair(p,force){const s=$(p.src),d=$(p.dst),text=s.value.trim();if(force)d.dataset.manual="0";if(d.dataset.manual==="1")return;if(!text){d.value="";return}const my=++p.token;d.placeholder=t("translating");translateText(text).then(function(r){if(my!==p.token)return;d.value=r.text;d.placeholder="";if(r.offline)toast("tOff")}).catch(function(){d.placeholder=""})}
-function forceAll(pairs){pairs.forEach(p=>runPair(p,true))}
-function wirePairs(pairs){pairs.forEach(function(p){p.token=0;p.timer=null;$(p.src).addEventListener("input",function(){clearTimeout(p.timer);p.timer=setTimeout(()=>runPair(p,false),800)});$(p.dst).addEventListener("input",function(){$(p.dst).dataset.manual="1"})})}
-function armPairs(pairs,editing){pairs.forEach(p=>{$(p.dst).dataset.manual=(editing&&$(p.dst).value.trim())?"1":"0"})}
+    <script>
+        // Automatic Dynamic Offer Highlighting Logic
+        document.addEventListener("DOMContentLoaded", function() {
+            const banner = document.getElementById("dynamicBanner");
+            const offers = document.querySelectorAll(".link-item");
 
-/* ---------- forms ---------- */
-const offerSpec=[["fName","fName","i"],["fCatEn","fCatEn","i"],["fCatHi","fCatHi","i"],["fBenEn","fBenEn","t"],["fBenHi","fBenHi","t"],["fStepsEn","fStepsEn","t"],["fStepsHi","fStepsHi","t"],["fLink","fLink","i"],["fVideo","fVideo","i"],["fExpiry","fExpiry","d"],["fFeat","fFeat","c"]];
-const profSpec=[["pfName","pName","i"],["pfPhoto","pPhoto","i"],["pfTagEn","pTagEn","i"],["pfTagHi","pTagHi","i"],["pfBioEn","pBioEn","t"],["pfBioHi","pBioHi","t"],["pfNoteEn","pNoteEn","t"],["pfNoteHi","pNoteHi","t"]];
-const offerPairs=[{src:"fCatEn",dst:"fCatHi"},{src:"fBenEn",dst:"fBenHi"},{src:"fStepsEn",dst:"fStepsHi"}];
-const profilePairs=[{src:"pfTagEn",dst:"pfTagHi"},{src:"pfBioEn",dst:"pfBioHi"},{src:"pfNoteEn",dst:"pfNoteHi"}];
-function formHtml(spec){return spec.map(function(s){const id=s[0],k=s[1],ty=s[2];if(ty==="c")return`<label class="chk"><input type="checkbox" id="${id}"><span data-i="${k}"></span></label>`;const tag=ty==="t"?`<textarea class="f" id="${id}"></textarea>`:`<input class="f" id="${id}"${ty==="d"?' type="date"':""}>`;return`<label data-i="${k}"></label>${tag}`}).join("")}
+            if (offers.length > 0) {
+                // Find featured offer or select the first offer in the list
+                let selectedOffer = Array.from(offers).find(item => item.getAttribute("data-featured") === "true") || offers[0];
+                
+                const title = selectedOffer.querySelector("h3") ? selectedOffer.querySelector("h3").innerText : "";
+                const benefit = selectedOffer.querySelector(".benefit-text") ? selectedOffer.querySelector(".benefit-text").innerText : "";
 
-/* ---------- language / theme ---------- */
-function setLang(l){lang=l;try{localStorage.setItem("hubLang",l)}catch(e){}applyLang()}
-function toggleTheme(){const light=document.documentElement.getAttribute("data-theme")==="light";if(light)document.documentElement.removeAttribute("data-theme");else document.documentElement.setAttribute("data-theme","light");try{localStorage.setItem("hubTheme",light?"dark":"light")}catch(e){}applyLang()}
-function applyLang(){document.documentElement.lang=lang;document.querySelectorAll("[data-i]").forEach(el=>{el.textContent=t(el.dataset.i)});document.querySelectorAll("[data-ph]").forEach(el=>{el.placeholder=t(el.dataset.ph)});$("bEn").classList.toggle("on",lang==="en");$("bHi").classList.toggle("on",lang==="hi");const light=document.documentElement.getAttribute("data-theme")==="light";$("bTheme").textContent=light?"☾ "+t("dark"):"☀ "+t("light");$("bAdmin").textContent=isAdmin?t("adminOn"):t("adminLogin");$("bAdmin").classList.toggle("on",isAdmin);$("mOfferT").textContent=t(editId?"editT":"addT");renderProfile();renderCards();paintSync()}
+                if (title && benefit) {
+                    banner.innerHTML = `🔥 <span>${title}</span>: ${benefit.replace('🎁 Benefit:', '')}`;
+                }
+            }
+        });
+    </script>
 
-/* ---------- profile ---------- */
-function renderProfile(){$("pName").textContent=profile.name;$("pTag").textContent=(lang==="hi"&&profile.tagHi)?profile.tagHi:profile.tagEn;$("pBio").textContent=(lang==="hi"&&profile.bioHi)?profile.bioHi:profile.bioEn;const im=$("pImg");im.onerror=function(){im.onerror=null;im.src=DEF_IMG};im.src=safeImg(profile.photo)||DEF_IMG;const nt=(lang==="hi"&&profile.noteHi)?profile.noteHi:(profile.noteEn||"");$("shareNote").textContent=nt;$("shareNote").style.display=nt?"block":"none"}
-function openProfile(){if(!isAdmin)return;const m={pfName:"name",pfPhoto:"photo",pfTagEn:"tagEn",pfTagHi:"tagHi",pfBioEn:"bioEn",pfBioHi:"bioHi",pfNoteEn:"noteEn",pfNoteHi:"noteHi"};Object.keys(m).forEach(k=>{$(k).value=profile[m[k]]||""});armPairs(profilePairs,true);applyLang();openOv("ovProfile")}
-function saveProfile(){if(!isAdmin)return;profile.name=$("pfName").value.trim()||profile.name;profile.photo=$("pfPhoto").value.trim();profile.tagEn=$("pfTagEn").value.trim();profile.tagHi=$("pfTagHi").value.trim();profile.bioEn=$("pfBioEn").value.trim();profile.bioHi=$("pfBioHi").value.trim();profile.noteEn=$("pfNoteEn").value.trim();profile.noteHi=$("pfNoteHi").value.trim();closeOv("ovProfile");renderProfile();toast("tSaved");queueSync()}
-
-/* ---------- offers ---------- */
-const catLabel=o=>(lang==="hi"&&o.catHi)?o.catHi:o.catEn;
-const rank=o=>{const d=daysLeft(o.expiry,new Date());return d!==null&&d<0?2:(o.featured?0:1)};
-function renderCards(){
- const q=$("q").value.trim().toLowerCase(),now=new Date();
- const cats=[];offers.forEach(o=>{if(o.catEn&&!cats.some(c=>c.key===o.catEn))cats.push({key:o.catEn,label:catLabel(o)})});
- if(activeCat&&!cats.some(c=>c.key===activeCat))activeCat="";
- $("chips").innerHTML=[{key:"",label:t("all")}].concat(cats).map(c=>`<button class="chip${c.key===activeCat?" on":""}" data-cat="${esc(c.key)}">${esc(c.label)}</button>`).join("");
- $("sCount").textContent=offers.length;
- $("sLive").textContent=offers.filter(o=>{const d=daysLeft(o.expiry,now);return d===null||d>=0}).length;
- const list=offers.map((o,i)=>({o:o,i:i})).filter(x=>(!activeCat||x.o.catEn===activeCat)&&(!q||(x.o.name+" "+x.o.catEn+" "+x.o.catHi).toLowerCase().includes(q))).sort((a,b)=>rank(a.o)-rank(b.o)||a.i-b.i).map(x=>x.o);
- if(!list.length){$("list").innerHTML='<div class="empty">'+esc(t("none"))+"</div>";return}
- $("list").innerHTML=list.map(function(o){
-  const ben=(lang==="hi"&&o.benHi)?o.benHi:o.benEn,stepsTxt=(lang==="hi"&&o.stepsHi)?o.stepsHi:o.stepsEn;
-  const steps=(stepsTxt||"").split("\n").map(s=>s.trim()).filter(Boolean),video=safeUrl(o.video),d=daysLeft(o.expiry,now);
-  let badge="";if(d!==null){if(d<0)badge=`<span class="tg d">${esc(t("expired"))}</span>`;else if(d<=7)badge=`<span class="tg w">${esc(t("endsIn").replace("{n}",d))}</span>`;else{const dt=new Date(o.expiry+"T00:00:00");badge=`<span class="tg">${esc(t("validTill").replace("{d}",dt.toLocaleDateString(lang==="hi"?"hi-IN":"en-GB",{day:"numeric",month:"short",year:"numeric"})))}</span>`}}
-  return`<article class="card${d!==null&&d<0?" expired":""}${o.featured?" feat":""}" data-id="${o.id}">
-  <div class="ctop"><div><div class="tags">${o.featured?`<span class="tg f1">★ ${esc(t("featured"))}</span>`:""}<span class="tg">${esc(catLabel(o))}</span>${badge}</div><div class="name">${esc(o.name)}</div></div>
-  <div class="row adm flex"><button class="ico" data-a="edit" aria-label="Edit">&#9998;</button><button class="ico x" data-a="del" aria-label="Delete">&#128465;</button></div></div>
-  <div class="ben"><small>${esc(t("benefit"))}</small>${esc(ben)}</div>
-  ${steps.length?`<details><summary>${esc(t("steps"))} (${steps.length})</summary><ol>${steps.map(s=>"<li>"+esc(s)+"</li>").join("")}</ol></details>`:""}
-  <div class="row"><input class="inp" readonly value="${esc(o.link)}"><button class="btn go" data-a="open">${esc(t("openOffer"))}</button><button class="btn copy" data-a="copy">${esc(t("copy"))}</button><button class="btn wa" data-a="wa">WhatsApp</button><button class="btn tgb" data-a="tg">Telegram</button></div>
-  ${video?`<a class="btn yt" data-a="video" href="${esc(video)}" target="_blank" rel="noopener noreferrer">&#9654; ${esc(t("watch"))}</a>`:""}</article>`}).join("")}
-
-$("chips").addEventListener("click",e=>{const b=e.target.closest("[data-cat]");if(!b)return;activeCat=b.dataset.cat;renderCards()});
-$("list").addEventListener("click",function(e){const b=e.target.closest("[data-a]");if(!b)return;const o=offers.find(x=>x.id===Number(b.closest(".card").dataset.id));if(!o)return;const a=b.dataset.a,msg=encodeURIComponent(T[lang].share(o.name,o.link));
- if(a==="copy"||a==="wa"||a==="tg"||a==="open"||a==="video")track(a==="wa"||a==="tg"?"share":a==="open"?"click":a,o.id,a==="wa"?"whatsapp":a==="tg"?"telegram":"");
- if(a==="open"){window.open(o.link,"_blank","noopener");return}
- if(a==="copy")copyText(o.link);else if(a==="wa")window.open("https://wa.me/?text="+msg,"_blank","noopener");else if(a==="tg")window.open("https://t.me/share/url?url="+encodeURIComponent(o.link)+"&text="+encodeURIComponent(T[lang].share(o.name,"")),"_blank","noopener");else if(a==="edit")openOffer(o.id);else if(a==="del")delOffer(o.id)});
-function copyText(text){const fb=function(){const ta=document.createElement("textarea");ta.value=text;ta.style.cssText="position:fixed;opacity:0";document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand("copy")}catch(e){}document.body.removeChild(ta);toast(ok?"tCopied":"tCopyFail")};if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(text).then(()=>toast("tCopied"),fb);else fb()}
-
-/* ---------- admin ---------- */
-function toggleAdmin(){if(isAdmin){isAdmin=false;document.body.classList.remove("admin");applyLang();toast("tOut")}else{$("pw").value="";openOv("ovPw");setTimeout(()=>$("pw").focus(),50)}}
-async function sha256(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0")}).join("")}
-async function checkPw(){
- if(!(window.crypto&&crypto.subtle)){toast("tPwHttps");return}
- let ok=false;try{ok=(await sha256($("pw").value))===ADMIN_HASH}catch(e){}
- if(ok){isAdmin=true;document.body.classList.add("admin");closeOv("ovPw");applyLang();toast("tIn");pullLatest(true)}else toast("tWrong")}
-function openOffer(id){if(!isAdmin)return;editId=id||null;const o=id?offers.find(x=>x.id===id):{name:"",catEn:"",catHi:"",benEn:"",benHi:"",stepsEn:"",stepsHi:"",link:"",video:"",expiry:"",featured:false};
- ["name","catEn","catHi","benEn","benHi","stepsEn","stepsHi","link","video","expiry"].forEach(k=>{$("f"+k.charAt(0).toUpperCase()+k.slice(1)).value=o[k]||""});$("fFeat").checked=!!o.featured;armPairs(offerPairs,!!id);applyLang();openOv("ovOffer")}
-function saveOffer(){if(!isAdmin)return;const d={name:$("fName").value.trim(),catEn:$("fCatEn").value.trim(),catHi:$("fCatHi").value.trim(),benEn:$("fBenEn").value.trim(),benHi:$("fBenHi").value.trim(),stepsEn:$("fStepsEn").value.trim(),stepsHi:$("fStepsHi").value.trim(),link:$("fLink").value.trim(),video:$("fVideo").value.trim(),expiry:$("fExpiry").value,featured:$("fFeat").checked};
- if(!d.name||!safeUrl(d.link)){toast("tReq");return}
- if(editId){Object.assign(offers.find(x=>x.id===editId),d);toast("tSaved")}else{d.id=offers.length?Math.max.apply(null,offers.map(x=>x.id))+1:1;offers.push(d);toast("tAdded")}
- closeOv("ovOffer");editId=null;renderCards();queueSync()}
-function delOffer(id){if(!isAdmin||!confirm(t("confirmDel")))return;offers=offers.filter(x=>x.id!==id);renderCards();toast("tDel");queueSync()}
-function exportPage(){if(!isAdmin)return;const data=JSON.stringify({profile:profile,offers:offers}).replace(/</g,"\\u003c");const html=ORIGINAL.replace(/(<script id="seed" type="application\/json">)[\s\S]*?(<\/script>)/,(m,a,b)=>a+data+b);const url=URL.createObjectURL(new Blob([html],{type:"text/html"}));const a=document.createElement("a");a.href=url;a.download="affiliate_hub.html";document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(()=>URL.revokeObjectURL(url),1500);toast("tExp")}
-
-/* ---------- tracking & analytics ---------- */
-const LS_EV="hubEvents";
-const REF=(new URLSearchParams(location.search).get("ref")||"").replace(/[^\w-]/g,"").slice(0,20);
-/*TRK_START*/
-function vid(){try{let v=localStorage.getItem("hubVid");if(!v){v=Math.random().toString(36).slice(2,8);localStorage.setItem("hubVid",v)}return v}catch(e){return "anon"}}
-function track(type,offerId,extra){
- if(isAdmin)return;
- const me=vid(),ev={t:Date.now(),type:type,offer:offerId||0,x:extra||"",ref:REF===me?"":REF,v:me};
- try{const a=JSON.parse(localStorage.getItem(LS_EV)||"[]");a.push(ev);localStorage.setItem(LS_EV,JSON.stringify(a.slice(-2000)))}catch(e){}
- if(FIREBASE_URL){try{fetch(FIREBASE_URL.replace(/\/$/,"")+"/events.json",{method:"POST",body:JSON.stringify(ev),keepalive:true}).catch(function(){})}catch(e){}}
-}
-/*TRK_END*/
-/*AGG_START*/
-function aggregate(events,offers,now){
- const tot={visit:0,click:0,copy:0,share:0,video:0,pageShare:0},per={},ch={},refs={},days=[],dayMap={},seen={};
- const dk=function(d){return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()};
- offers.forEach(function(o){per[o.id]={click:0,copy:0,share:0,video:0}});
- for(let i=6;i>=0;i--){const d=new Date(now.getFullYear(),now.getMonth(),now.getDate()-i);const o={key:dk(d),label:d.getDate()+"/"+(d.getMonth()+1),visits:0,actions:0};days.push(o);dayMap[o.key]=o}
- const list=events.filter(function(e){return e&&typeof e.type==="string"&&typeof e.t==="number"});
- list.forEach(function(e){
-  if(tot[e.type]!==undefined)tot[e.type]++;
-  if(per[e.offer]&&per[e.offer][e.type]!==undefined)per[e.offer][e.type]++;
-  if((e.type==="share"||e.type==="pageShare")&&e.x)ch[e.x]=(ch[e.x]||0)+1;
-  if(e.type==="visit"){if(e.v)seen[e.v]=1;if(e.ref)refs[e.ref]=(refs[e.ref]||0)+1}
-  const d=dayMap[dk(new Date(e.t))];if(d){if(e.type==="visit")d.visits++;else d.actions++}
- });
- return{tot:tot,per:per,ch:ch,refs:refs,days:days,uniq:Object.keys(seen).length,recent:list.slice().sort(function(a,b){return b.t-a.t}).slice(0,12)}
-}
-/*AGG_END*/
-async function loadEvents(){
- if(FIREBASE_URL){const r=await fetch(FIREBASE_URL.replace(/\/$/,"")+"/events.json?orderBy=%22%24key%22&limitToLast=2000");if(!r.ok)throw new Error("http "+r.status);const j=await r.json();return{events:Object.values(j||{}),live:true}}
- let a=[];try{a=JSON.parse(localStorage.getItem(LS_EV)||"[]")}catch(e){}
- return{events:a,live:false}
-}
-let statTimer=null;
-function openStats(){if(!isAdmin)return;openOv("ovStats");renderStats();clearInterval(statTimer);statTimer=setInterval(renderStats,8000)}
-function closeStats(){clearInterval(statTimer);closeOv("ovStats")}
-async function renderStats(){
- if(!$("ovStats").classList.contains("show")){clearInterval(statTimer);return}
- try{paintStats(await loadEvents())}catch(e){$("statsBody").innerHTML='<div class="empty">'+esc(t("tStatErr"))+"</div>"}
-}
-function paintStats(r){
- const a=aggregate(r.events,offers,new Date()),n=x=>Number(x).toLocaleString(),nm=id=>{const o=offers.find(x=>x.id===id);return o?o.name:""};
- const kp=[["stVisits",a.tot.visit],["stUniq",a.uniq],["stClicks",a.tot.click],["stCopies",a.tot.copy],["stShares",a.tot.share],["stPageShares",a.tot.pageShare],["stVideos",a.tot.video]];
- const max=Math.max(1,...a.days.map(d=>d.visits+d.actions));
- const top=o=>Object.keys(o).sort((x,y)=>o[y]-o[x]).slice(0,8);
- let h=`<span class="tg ${r.live?"f1":"w"}">${r.live?"&#9679; "+esc(t("liveTag")):esc(t("localTag"))}</span> <span class="hint">${esc(t("updated"))}: ${new Date().toLocaleTimeString()}</span>`;
- if(!r.live)h+=`<p class="hint" style="margin-top:8px">${esc(t("localNote"))}</p>`;
- h+='<div class="kpis">'+kp.map(k=>`<div class="kpi"><b>${n(k[1])}</b><span>${esc(t(k[0]))}</span></div>`).join("")+"</div>";
- h+=`<div class="sh4">${esc(t("perOffer"))}</div><div class="sc"><table class="tbl"><tr><th>${esc(t("colOffer"))}</th><th>${esc(t("colClicks"))}</th><th>${esc(t("colCopies"))}</th><th>${esc(t("colShares"))}</th><th>${esc(t("colVideos"))}</th></tr>`+offers.map(o=>{const p=a.per[o.id];return`<tr><td>${esc(o.name)}</td><td>${n(p.click)}</td><td>${n(p.copy)}</td><td>${n(p.share)}</td><td>${n(p.video)}</td></tr>`}).join("")+"</table></div>";
- h+=`<div class="sh4">${esc(t("last7"))}</div><div class="bars">`+a.days.map(d=>{const v=d.visits+d.actions;return`<div class="bar" title="${v}"><i style="height:${Math.round(v/max*80)}%"></i>${esc(d.label)}</div>`}).join("")+"</div>";
- const chs=top(a.ch),rfs=top(a.refs);
- h+=`<div class="sh4">${esc(t("channels"))}</div><div class="row">`+(chs.length?chs.map(k=>`<span class="tg">${esc(k)}: ${n(a.ch[k])}</span>`).join(""):`<span class="hint">${esc(t("noData"))}</span>`)+"</div>";
- h+=`<div class="sh4">${esc(t("referrers"))}</div><div class="row">`+(rfs.length?rfs.map(k=>`<span class="tg">${esc(k)}: ${n(a.refs[k])}</span>`).join(""):`<span class="hint">${esc(t("noData"))}</span>`)+"</div>";
- h+=`<div class="sh4">${esc(t("recent"))}</div>`+(a.recent.length?'<ul class="feed">'+a.recent.map(e=>`<li>${esc(new Date(e.t).toLocaleString())} &mdash; ${esc(t("ev_"+e.type)||e.type)}${nm(e.offer)?" &middot; "+esc(nm(e.offer)):""}${e.x?" ("+esc(e.x)+")":""}</li>`).join("")+"</ul>":`<div class="hint">${esc(t("noData"))}</div>`);
- $("statsBody").innerHTML=h;
-}
-function dl(text,name,type){const url=URL.createObjectURL(new Blob(["\ufeff"+text],{type:type}));const a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(()=>URL.revokeObjectURL(url),1500)}
-function exportCsv(){if(!isAdmin)return;loadEvents().then(function(r){const q=s=>'"'+String(s==null?"":s).replace(/"/g,'""')+'"';const rows=[["time","type","offer","channel","ref","visitor"].join(",")].concat(r.events.slice().sort((x,y)=>x.t-y.t).map(function(e){const o=offers.find(z=>z.id===e.offer);return[new Date(e.t).toISOString(),e.type,o?o.name:"",e.x,e.ref,e.v].map(q).join(",")}));dl(rows.join("\n"),"affiliate_stats.csv","text/csv")}).catch(()=>toast("tStatErr"))}
-function clearLocal(){if(!isAdmin||!confirm(t("confirmClear")))return;try{localStorage.removeItem(LS_EV)}catch(e){}renderStats()}
-
-/* ---------- share whole page ---------- */
-function pageUrl(){return(PUBLIC_URL||location.href.split(/[?#]/)[0])+"?ref="+vid()}
-function sharePage(ch){
- const url=pageUrl(),txt=T[lang].pageShare(profile.name),e=encodeURIComponent;
- if(location.protocol==="file:"&&!PUBLIC_URL)toast("tNoUrl");
- track("pageShare",0,ch);
- if(ch==="copy"){copyText(url);return}
- if(ch==="native"){if(navigator.share)navigator.share({title:profile.name,text:txt,url:url}).catch(function(){});return}
- const map={whatsapp:"https://wa.me/?text="+e(txt+" "+url),telegram:"https://t.me/share/url?url="+e(url)+"&text="+e(txt),facebook:"https://www.facebook.com/sharer/sharer.php?u="+e(url),x:"https://twitter.com/intent/tweet?url="+e(url)+"&text="+e(txt),linkedin:"https://www.linkedin.com/sharing/share-offsite/?url="+e(url),email:"mailto:?subject="+e(profile.name)+"&body="+e(txt+"\n"+url),sms:"sms:?&body="+e(txt+" "+url)};
- if(!map[ch])return;
- if(ch==="email"||ch==="sms")location.href=map[ch];else window.open(map[ch],"_blank","noopener");
-}
-
-/* ---------- GitHub sync (no backend, no paid service) ---------- */
-const DATA_FILE="data.json",GH_KEY="hubGh";
-const gh=(function(){const d={owner:"",repo:"",branch:"main",token:""};const m=/^([^.]+)\.github\.io$/i.exec(location.hostname);if(m){d.owner=m[1];const seg=location.pathname.split("/").filter(Boolean)[0];d.repo=(seg&&!/\.html?$/i.test(seg))?seg:m[1]+".github.io"}try{Object.assign(d,JSON.parse(localStorage.getItem(GH_KEY)||"{}"))}catch(e){}return d})();
-const ghReady=()=>!!(gh.owner&&gh.repo&&gh.token);
-let syncState=ghReady()?"idle":"off",syncDetail="",syncTimer=null,syncBusy=false,syncAgain=false,syncWarned=false;
-function paintSync(){const el=$("syncSt");const k={off:"ghOff",idle:"ghIdle",busy:"ghBusy",ok:"ghOk",err:"ghErr"}[syncState];el.textContent=t(k);el.className="sync adm"+(syncState==="ok"||syncState==="busy"||syncState==="err"?" "+syncState:"");el.title=syncDetail}
-function setSync(s,d){syncState=s;syncDetail=d||"";paintSync()}
-const ghEnc=encodeURIComponent;
-const ghBase=()=>"https://api.github.com/repos/"+ghEnc(gh.owner)+"/"+ghEnc(gh.repo);
-const ghFile=()=>ghBase()+"/contents/"+DATA_FILE;
-function ghHead(extra){return Object.assign({"Authorization":"Bearer "+gh.token,"Accept":"application/vnd.github+json"},extra||{})}
-async function ghMsg(r){let m="HTTP "+r.status;try{const j=await r.json();if(j&&j.message)m+=": "+j.message}catch(e){}return m}
-function toB64(str){const b=new TextEncoder().encode(str);let s="";for(let i=0;i<b.length;i+=32768)s+=String.fromCharCode.apply(null,b.subarray(i,i+32768));return btoa(s)}
-function payload(){return JSON.stringify({version:1,updated:new Date().toISOString(),profile:profile,offers:offers},null,1)}
-function applyData(j){
- if(!j||typeof j!=="object"||!j.profile||typeof j.profile!=="object"||!Array.isArray(j.offers))return false;
- profile=Object.assign({},SEED.profile,j.profile);
- offers=j.offers.filter(function(o){return o&&typeof o==="object"&&typeof o.name==="string"}).map(function(o,i){return Object.assign({},o,{id:Number(o.id)||i+1})});
- return true}
-async function ghSha(){const r=await fetch(ghFile()+"?ref="+ghEnc(gh.branch)+"&t="+Date.now(),{headers:ghHead(),cache:"no-store"});if(r.status===404)return null;if(!r.ok)throw new Error(await ghMsg(r));return (await r.json()).sha}
-async function ghPut(sha){const body={message:"Update affiliate data from admin panel ("+new Date().toISOString()+")",content:toB64(payload()),branch:gh.branch};if(sha)body.sha=sha;return fetch(ghFile(),{method:"PUT",headers:ghHead({"Content-Type":"application/json"}),body:JSON.stringify(body)})}
-async function pushNow(){
- if(!isAdmin||!ghReady())return;
- if(syncBusy){syncAgain=true;return}
- syncBusy=true;setSync("busy");
- try{
-  let r=await ghPut(await ghSha());
-  if(r.status===409||r.status===422)r=await ghPut(await ghSha());
-  if(!r.ok)throw new Error(await ghMsg(r));
-  setSync("ok",new Date().toLocaleTimeString());toast("tGhPushed")
- }catch(e){setSync("err",String(e&&e.message||e));toast("tGhErr")}
- finally{syncBusy=false;if(syncAgain){syncAgain=false;pushNow()}}
-}
-function queueSync(){if(!isAdmin)return;if(!ghReady()){if(!syncWarned){syncWarned=true;toast("tGhNone")}return}clearTimeout(syncTimer);syncTimer=setTimeout(pushNow,1200)}
-async function pullLatest(quiet){
- if(!ghReady())return;
- try{
-  const r=await fetch(ghFile()+"?ref="+ghEnc(gh.branch)+"&t="+Date.now(),{headers:ghHead({"Accept":"application/vnd.github.raw+json"}),cache:"no-store"});
-  if(r.status===404)return;
-  if(!r.ok)throw new Error(await ghMsg(r));
-  if(applyData(JSON.parse(await r.text()))){renderProfile();renderCards();if(!quiet)toast("tGhPulled")}
- }catch(e){setSync("err",String(e&&e.message||e))}
-}
-async function loadRemote(){
- try{const r=await fetch(DATA_FILE+"?v="+Date.now(),{cache:"no-store"});if(!r.ok)return;if(applyData(await r.json())){renderProfile();renderCards()}}catch(e){}
-}
-const syncSpec=[["ghOwner","ghOwner","i"],["ghRepo","ghRepo","i"],["ghBranch","ghBranch","i"],["ghToken","ghToken","i"]];
-function readSync(){gh.owner=$("ghOwner").value.trim();gh.repo=$("ghRepo").value.trim().replace(/\.git$/,"");gh.branch=$("ghBranch").value.trim()||"main";const tk=$("ghToken").value.trim();if(tk)gh.token=tk}
-function persistSync(){try{localStorage.setItem(GH_KEY,JSON.stringify(gh))}catch(e){}}
-function openSync(){if(!isAdmin)return;$("ghOwner").value=gh.owner;$("ghRepo").value=gh.repo;$("ghBranch").value=gh.branch;$("ghToken").value="";$("ghToken").placeholder=gh.token?"******** (saved, leave blank to keep)":"github_pat_...";applyLang();openOv("ovSync")}
-function saveSync(){if(!isAdmin)return;readSync();persistSync();setSync(ghReady()?"idle":"off");closeOv("ovSync");toast("tGhSaved")}
-async function testSync(){
- if(!isAdmin)return;readSync();if(!ghReady()){toast("tGhNeed");return}
- try{const r=await fetch(ghBase(),{headers:ghHead(),cache:"no-store"});if(!r.ok)throw new Error("http");const j=await r.json();if(j.permissions&&j.permissions.push===false)throw new Error("readonly");const b=await fetch(ghBase()+"/branches/"+ghEnc(gh.branch),{headers:ghHead(),cache:"no-store"});if(!b.ok)throw new Error("branch");toast("tGhOk")}catch(e){toast("tGhFail")}
-}
-function syncNow(){if(!isAdmin)return;readSync();if(!ghReady()){toast("tGhNeed");return}persistSync();closeOv("ovSync");pushNow()}
-function forgetToken(){if(!isAdmin)return;gh.token="";persistSync();$("ghToken").value="";setSync("off");toast("tGhGone")}
-
-/* ---------- init ---------- */
-$("offerForm").innerHTML=formHtml(offerSpec);$("profileForm").innerHTML=formHtml(profSpec);
-wirePairs(offerPairs);wirePairs(profilePairs);$("syncForm").innerHTML=formHtml(syncSpec);$("ghToken").type="password";$("ghToken").autocomplete="off";
-document.querySelectorAll(".ov").forEach(ov=>ov.addEventListener("click",e=>{if(e.target===ov)ov.classList.remove("show")}));
-document.addEventListener("keydown",e=>{if(e.key==="Escape")document.querySelectorAll(".ov.show").forEach(o=>o.classList.remove("show"))});
-$("yr").textContent=new Date().getFullYear();
-$("shareBtns").addEventListener("click",function(e){const b=e.target.closest("[data-ch]");if(b)sharePage(b.dataset.ch)});
-if(navigator.share)$("shNative").style.display="";
-try{if(!sessionStorage.getItem("hubSeen")){sessionStorage.setItem("hubSeen","1");track("visit")}}catch(e){track("visit")}
-(function(){const fin=function(){applyLang();document.body.classList.remove("boot")};Promise.race([loadRemote(),new Promise(function(r){setTimeout(r,2500)})]).then(fin,fin)})();
-</script>
 </body>
 </html>
