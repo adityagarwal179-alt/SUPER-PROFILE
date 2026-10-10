@@ -3,257 +3,646 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Affiliate Hub</title>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <title>Aditya Agarwal | Affiliate Partner & Admin Hub</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary: #00ff88;
-            --secondary: #00d2ff;
-            --dark: #0a0e17;
-            --card-bg: #141a29;
-            --text: #ffffff;
-            --accent: #ff0055;
-            --highlight: #ffd700;
+            --bg-color: #0b111e;
+            --card-bg: #111a2d;
+            --card-border: #1a2842;
+            --text-main: #ffffff;
+            --text-sub: #94a3b8;
+            --accent-green: #00d26a;
+            --accent-blue: #0084ff;
+            --accent-yellow: #ffab00;
+            --accent-red: #ff3b30;
+            --btn-orange: #ff9500;
+            --btn-teal: #00c7b1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--dark);
-            color: var(--text);
-            margin: 0;
-            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding-bottom: 30px;
         }
 
-        header {
-            text-align: center;
-            padding: 2.5rem 1rem;
-            background: linear-gradient(135deg, var(--dark) 0%, #1f283d 100%);
+        /* Top Admin Sync Bar */
+        .admin-top-bar {
             width: 100%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .tagline {
-            color: #8c9bae;
-            margin-top: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        /* Features Section */
-        .benefits-container {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            padding: 2rem 1rem;
-            width: 100%;
-            max-width: 1200px;
-        }
-
-        .benefit-card {
-            background-color: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 12px;
-            width: 280px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #1f283d;
-        }
-
-        .benefit-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 210, 255, 0.2);
-            border-color: var(--secondary);
-        }
-
-        .benefit-card h3 {
-            margin: 0.5rem 0;
-            color: var(--primary);
-        }
-
-        .benefit-card p {
-            color: #8c9bae;
-            font-size: 0.95rem;
-            line-height: 1.4;
-        }
-
-        /* Dynamic Offer Highlight Banner */
-        .offer-banner {
-            background: linear-gradient(45deg, var(--accent), #ff5500);
-            color: white;
-            padding: 1.2rem 2rem;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.3rem;
-            margin: 1rem 1rem 2rem 1rem;
-            box-shadow: 0 10px 25px rgba(255, 0, 85, 0.4);
-            text-align: center;
-            animation: pulse 2s infinite;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .offer-banner span {
-            color: var(--highlight);
-            text-decoration: underline;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
-        }
-
-        /* Offers/Links Container */
-        .links-container {
-            width: 100%;
-            max-width: 800px;
-            padding: 0 1rem 3rem 1rem;
-        }
-
-        .link-item {
-            background-color: var(--card-bg);
-            margin-bottom: 1.5rem;
-            padding: 1.5rem;
-            border-radius: 12px;
+            background-color: #070d18;
+            border-bottom: 1px solid var(--card-border);
+            padding: 8px 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border: 1px solid #1f283d;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+            font-size: 0.8rem;
+            color: var(--text-sub);
         }
 
-        .link-item:hover {
-            background-color: #1a2233;
-            border-color: var(--primary);
+        .admin-status {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .link-content h3 {
-            margin: 0 0 0.5rem 0;
-            color: var(--text);
-            font-size: 1.3rem;
-        }
-
-        .link-content .benefit-text {
-            margin: 0;
-            color: var(--primary);
+        .sync-badge {
+            background: rgba(0, 210, 106, 0.15);
+            color: var(--accent-green);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
             font-weight: 600;
-            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        .action-button {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--dark);
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1rem;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 4px 10px rgba(0, 255, 136, 0.3);
+        .admin-btn-toggle {
+            background: var(--accent-green);
+            color: #000;
             border: none;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 700;
             cursor: pointer;
-            white-space: nowrap;
+            font-size: 0.75rem;
         }
 
-        .action-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 15px rgba(0, 255, 136, 0.5);
+        .container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px 10px;
         }
 
-        @media (max-width: 600px) {
-            .link-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-            .action-button {
-                width: 100%;
-                text-align: center;
-            }
+        /* Profile Section */
+        .profile-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .edit-profile-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #1e293b;
+            color: #fff;
+            border: 1px solid #334155;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--btn-teal);
+            margin-bottom: 15px;
+        }
+
+        .profile-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .profile-title {
+            color: var(--accent-green);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .profile-bio {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            max-width: 650px;
+            margin: 0 auto 15px auto;
+            line-height: 1.4;
+        }
+
+        .badge-verified {
+            display: inline-block;
+            background: rgba(0, 210, 106, 0.15);
+            color: var(--accent-green);
+            border: 1px solid rgba(0, 210, 106, 0.3);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .stat-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            color: var(--text-sub);
+            font-size: 0.8rem;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        /* How It Works */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .step-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+        .step-num {
+            width: 28px;
+            height: 28px;
+            background-color: var(--accent-green);
+            color: #000;
+            font-weight: 700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .step-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .step-desc {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+        }
+
+        /* Share Section */
+        .share-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+        .share-desc {
+            color: var(--text-sub);
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+
+        .share-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .share-btn {
+            border: none;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-wa { background-color: #25d366; }
+        .btn-tg { background-color: #0088cc; }
+        .btn-fb { background-color: #1877f2; }
+        .btn-x { background-color: #000; border: 1px solid #333; }
+        .btn-li { background-color: #0a66c2; }
+        .btn-mail { background-color: #64748b; }
+        .btn-sms { background-color: #475569; }
+        .btn-copy { background-color: #00c7b1; color: #000; }
+        .btn-more { background-color: #00a896; color: #fff; }
+
+        /* Filter Section */
+        .search-box {
+            width: 100%;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 10px 15px;
+            color: #fff;
+            font-size: 0.9rem;
+            outline: none;
+            margin-bottom: 12px;
+        }
+
+        .filter-tags {
+            display: flex;
+            gap: 10px;
+        }
+
+        .filter-tag {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border: 1px solid var(--card-border);
+            background-color: var(--card-bg);
+            color: var(--text-sub);
+        }
+
+        .filter-tag.active {
+            background-color: #0284c7;
+            color: #fff;
+            border-color: #0284c7;
+        }
+
+        /* Offers List */
+        .offers-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .offer-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .offer-card.featured {
+            border: 1.5px solid var(--btn-teal);
+        }
+
+        .offer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .offer-tags {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+
+        .tag-badge {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .tag-featured { background-color: #00c7b1; color: #000; }
+        .tag-category { background-color: #1e293b; color: #38bdf8; }
+
+        .offer-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .action-icons {
+            display: flex;
+            gap: 10px;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .benefit-box {
+            background-color: #0a1322;
+            border-left: 3px solid var(--accent-green);
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .benefit-title {
+            font-size: 0.7rem;
+            color: var(--accent-green);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .benefit-text {
+            font-size: 0.85rem;
+            line-height: 1.4;
+            color: #e2e8f0;
+        }
+
+        .link-action-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .link-input {
+            flex: 1;
+            min-width: 200px;
+            background-color: #070d18;
+            border: 1px solid var(--card-border);
+            border-radius: 6px;
+            padding: 8px 12px;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            outline: none;
+        }
+
+        .btn-action {
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-get { background-color: var(--btn-orange); color: #000; }
+        .btn-copy-link { background-color: var(--btn-teal); color: #000; }
+        .btn-wa-share { background-color: #25d366; color: #fff; }
+        .btn-tg-share { background-color: #0088cc; color: #fff; }
+
+        .add-offer-btn {
+            border: 2px dashed #00c7b1;
+            background: transparent;
+            color: #00c7b1;
+            border-radius: 12px;
+            padding: 15px;
+            width: 100%;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* LOGIN MODAL POPUP */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            width: 90%;
+            max-width: 400px;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .modal-sub {
+            color: var(--text-sub);
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+
+        .form-input {
+            width: 100%;
+            background-color: #070d18;
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            font-size: 0.9rem;
+            outline: none;
+            margin-bottom: 15px;
+        }
+
+        .modal-submit-btn {
+            width: 100%;
+            background: linear-gradient(to right, var(--btn-teal), var(--accent-blue));
+            color: #000;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: var(--text-sub);
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Exclusive Affiliate Hub</h1>
-        <p class="tagline">100% Digital • Instant Verification • Direct Benefits</p>
-    </header>
-
-    <!-- Key Benefits Features -->
-    <div class="benefits-container">
-        <div class="benefit-card">
-            <h3>⚡ Hassle-Free</h3>
-            <p>No paper forms or bank visits. Complete everything online in under 5 minutes.</p>
+    <!-- Top Admin Bar -->
+    <div class="admin-top-bar">
+        <div class="admin-status">
+            <span class="sync-badge"><i class="fa-solid fa-arrows-rotate"></i> GitHub Sync Active</span>
+            <span>Last synced: Just now</span>
         </div>
-        <div class="benefit-card">
-            <h3>📱 100% Digital Process</h3>
-            <p>Instant E-KYC and digital onboarding directly from your phone or PC.</p>
-        </div>
-        <div class="benefit-card">
-            <h3>🔒 Verified & Secure</h3>
-            <p>Official bank partner referral links ensuring maximum safety and privacy.</p>
-        </div>
+        <button class="admin-btn-toggle" onclick="openLoginModal()">Admin On Logged In</button>
     </div>
 
-    <!-- Dynamic Highlight Banner (JavaScript automatically fills this) -->
-    <div class="offer-banner" id="dynamicBanner">
-        🔥 Featured Offer: Loading best bank deals...
+    <div class="container">
+
+        <!-- Profile -->
+        <div class="profile-card">
+            <button class="edit-profile-btn" onclick="openLoginModal()">Edit Profile</button>
+            <img src="https://via.placeholder.com/150" alt="Aditya Agarwal" class="avatar">
+            <h1 class="profile-name">Aditya Agarwal</h1>
+            <div class="profile-title">D.Pharm & BCA Student | Affiliate Partner</div>
+            <p class="profile-bio">
+                I'm Aditya Agarwal, a D.Pharm and BCA student. I share trusted banking and finance apps along with clear video guides to help you get started.
+            </p>
+            <span class="badge-verified"><i class="fa-solid fa-circle-check"></i> Verified Partner</span>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-value">3</div>
+                <div class="stat-label">Active Offers</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Free to Join</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">3</div>
+                <div class="stat-label">Live Offers</div>
+            </div>
+        </div>
+
+        <!-- How It Works -->
+        <div>
+            <div class="section-title">How It Works</div>
+            <div class="steps-grid">
+                <div class="step-box">
+                    <div class="step-num">1</div>
+                    <div class="step-title">Choose an offer</div>
+                    <div class="step-desc">Pick the app or bank that suits you.</div>
+                </div>
+                <div class="step-box">
+                    <div class="step-num">2</div>
+                    <div class="step-title">Sign up with my link</div>
+                    <div class="step-desc">Use my referral link to unlock the benefit.</div>
+                </div>
+                <div class="step-box">
+                    <div class="step-num">3</div>
+                    <div class="step-title">Follow the guide</div>
+                    <div class="step-desc">Watch the video and complete each step.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exclusive Offers -->
+        <div>
+            <div class="section-title">Exclusive Offers</div>
+            <input type="text" class="search-box" placeholder="Search apps or banks...">
+            <div class="filter-tags">
+                <div class="filter-tag active">All</div>
+                <div class="filter-tag">Bank Account</div>
+                <div class="filter-tag">UPI / Payments</div>
+            </div>
+        </div>
+
+        <!-- Offers List -->
+        <div class="offers-list">
+            <!-- Kotak -->
+            <div class="offer-card featured">
+                <div class="offer-header">
+                    <div>
+                        <div class="offer-tags">
+                            <span class="tag-badge tag-featured">★ Featured</span>
+                            <span class="tag-badge tag-category">Bank Account</span>
+                        </div>
+                        <div class="offer-title">Kotak Mahindra Bank</div>
+                    </div>
+                    <div class="action-icons" onclick="openLoginModal()">
+                        <i class="fa-solid fa-pen"></i>
+                        <i class="fa-solid fa-trash"></i>
+                    </div>
+                </div>
+                <div class="benefit-box">
+                    <div class="benefit-title">Your Benefit</div>
+                    <div class="benefit-text">
+                        Get ₹50 instantly on opening Kotak811 A/c. Join 2.5+ crore Indians who trust Kotak811 for 100% digital banking.
+                    </div>
+                </div>
+                <div class="link-action-row">
+                    <input type="text" class="link-input" value="https://h1a.in/H1Pufl" readonly>
+                    <button class="btn-action btn-get">Get Offer</button>
+                    <button class="btn-action btn-copy-link">Copy Link</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Offer Button -->
+        <button class="add-offer-btn" onclick="openLoginModal()">+ Add New Offer</button>
+
+        <div class="footer-note">
+            2026 © Affiliate Hub. All rights reserved.
+        </div>
+
     </div>
 
-    <!-- Referral / Bank Offers List -->
-    <div class="links-container" id="offersList">
-        
-        <!-- Offer 1 -->
-        <div class="link-item" data-featured="true">
-            <div class="link-content">
-                <h3>Axis Bank Savings Account</h3>
-                <p class="benefit-text">🎁 Benefit: Sign up using my link for a digital savings account and earn cashback/rewards directly!</p>
-            </div>
-            <a href="https://example.com/axis-referral" target="_blank" class="action-button">Open Account</a>
+    <!-- ADMIN LOGIN MODAL -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closeLoginModal()"><i class="fa-solid fa-xmark"></i></span>
+            <div class="modal-title">Admin Login</div>
+            <div class="modal-sub">Enter your GitHub PIN or Password to access Admin Panel</div>
+            
+            <input type="password" class="form-input" id="adminPin" placeholder="Enter Admin Password / PIN">
+            <button class="modal-submit-btn" onclick="submitLogin()">Unlock Admin Access</button>
         </div>
-
-        <!-- Offer 2 -->
-        <div class="link-item" data-featured="false">
-            <div class="link-content">
-                <h3>UPI Rewards Program</h3>
-                <p class="benefit-text">🎁 Benefit: Download the app with my link and earn instant referral cashback on first UPI transaction.</p>
-            </div>
-            <a href="https://example.com/upi-referral" target="_blank" class="action-button">Claim Offer</a>
-        </div>
-
     </div>
 
     <script>
-        // Automatic Dynamic Offer Highlighting Logic
-        document.addEventListener("DOMContentLoaded", function() {
-            const banner = document.getElementById("dynamicBanner");
-            const offers = document.querySelectorAll(".link-item");
+        function openLoginModal() {
+            document.getElementById('loginModal').style.display = 'flex';
+        }
 
-            if (offers.length > 0) {
-                // Find featured offer or select the first offer in the list
-                let selectedOffer = Array.from(offers).find(item => item.getAttribute("data-featured") === "true") || offers[0];
-                
-                const title = selectedOffer.querySelector("h3") ? selectedOffer.querySelector("h3").innerText : "";
-                const benefit = selectedOffer.querySelector(".benefit-text") ? selectedOffer.querySelector(".benefit-text").innerText : "";
+        function closeLoginModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
 
-                if (title && benefit) {
-                    banner.innerHTML = `🔥 <span>${title}</span>: ${benefit.replace('🎁 Benefit:', '')}`;
-                }
+        function submitLogin() {
+            const pin = document.getElementById('adminPin').value;
+            if (pin) {
+                alert("Admin Access Granted!");
+                closeLoginModal();
+            } else {
+                alert("Please enter a valid password.");
             }
-        });
+        }
     </script>
 
 </body>
