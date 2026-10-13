@@ -160,6 +160,7 @@ ol.stepchk input:checked+span{text-decoration:line-through;opacity:.65}
 .chat{height:300px;overflow-y:auto;background:var(--inp);border:1px solid var(--line);border-radius:12px;padding:10px}.bub{max-width:86%;padding:8px 12px;border-radius:12px;margin:6px 0;font-size:14px;line-height:1.5}.bub.me{margin-left:auto;background:var(--acc);color:var(--on)}.bub.bot{background:var(--panel);border:1px solid var(--line)}
 #aiFab{bottom:146px;background:linear-gradient(135deg,var(--acc),var(--acc2));border:0;cursor:pointer}.pill.on{background:var(--accd);color:#fff}
 @media print{#aiFab{display:none!important}}
+#bAdmin.hid{display:none}@media print{#otd,#tools,.chips,.toolbar,.vs,.sharebox{display:none!important}}
 </style>
 </head>
 <body>
@@ -175,7 +176,7 @@ ol.stepchk input:checked+span{text-decoration:line-through;opacity:.65}
    <button class="pill adm" onclick="openSettings()" data-i="settings"></button>
    <button class="pill adm" onclick="publishGithub()" data-i="publishGh"></button>
    <button class="pill adm" id="bExport" onclick="exportPage()" data-i="export"></button>
-   <button class="pill" id="bAdmin" onclick="toggleAdmin()"></button>
+   <button class="pill hid" id="bAdmin" onclick="toggleAdmin()"></button>
   </div>
  </div>
  <section class="hero">
@@ -711,8 +712,8 @@ function tCmp(){const vo=visOffers();$("aiB").innerHTML=`<p class="hint">Pick up
   $("cOut").innerHTML=rs.length<2?"<div class='empty'>Select 2 or 3 offers.</div>":`<table class="tbl"><tr><th></th>${rs.map(o=>`<th>${esc(o.name)}</th>`).join("")}</tr>${rows.map(r=>`<tr><td><b>${r[0]}</b></td>${rs.map(o=>`<td style="text-align:left">${esc(r[1](o))}</td>`).join("")}</tr>`).join("")}</table><p class="hint">Highest Smart Score: <b>${esc(rs.slice().sort((a,b)=>score(b)-score(a))[0].name)}</b></p>`};
  $("cpick").onchange=draw;draw()}
 function tMsg(){const vo=visOffers();if(!vo.length){$("aiB").innerHTML="<div class='empty'>No offers yet.</div>";return}
- $("aiB").innerHTML=`<label>Offer</label><select class="f" id="gO">${vo.map(o=>`<option value="${o.id}" ${o.id===preSel?"selected":""}>${esc(o.name)}</option>`).join("")}</select><label>Tone</label><select class="f" id="gT"><option value="f">Friendly</option><option value="p">Professional</option><option value="s">Short</option><option value="h">Hinglish</option></select><div id="gOut"></div>`;
- const draw=()=>{const o=offers.find(x=>x.id==$("gO").value),b=firstLine(o),u=o.link,M={f:`Hey! 👋 Found a great offer: ${o.name}. ${b}\nStep-by-step video guide is on my page. Start here: ${u}`,p:`Hello, sharing a verified sign-up offer for ${o.name}: ${b}\nFree to join. Link: ${u}`,s:`${o.name}: ${b} ${u}`,h:`Bhai ek mast offer mila hai: ${o.name}! ${b}\nSeedha yahan se kholo: ${u} 🔥`}[$("gT").value];
+ $("aiB").innerHTML=`<label>Offer</label><select class="f" id="gO">${vo.map(o=>`<option value="${o.id}" ${o.id===preSel?"selected":""}>${esc(o.name)}</option>`).join("")}</select><label>Tone</label><select class="f" id="gT"><option value="f">Friendly</option><option value="p">Professional</option><option value="s">Short</option><option value="h">Hinglish</option><option value="i">Instagram caption</option></select><div id="gOut"></div>`;
+ const draw=()=>{const o=offers.find(x=>x.id==$("gO").value),b=firstLine(o),u=o.link,M={f:`Hey! 👋 Found a great offer: ${o.name}. ${b}\nStep-by-step video guide is on my page. Start here: ${u}`,p:`Hello, sharing a verified sign-up offer for ${o.name}: ${b}\nFree to join. Link: ${u}`,s:`${o.name}: ${b} ${u}`,h:`Bhai ek mast offer mila hai: ${o.name}! ${b}\nSeedha yahan se kholo: ${u} 🔥`,i:`${o.name}: ${b}\n\nTap the link 👇\n${u}\n\n#offers #banking #cashback #savemoney #india`}[$("gT").value];
   $("gOut").innerHTML=`<textarea class="f" id="gTx" style="min-height:120px">${esc(M)}</textarea><div class="row"><button class="btn copy" id="gCp">${esc(t("copy"))}</button><button class="btn wa" id="gWa">WhatsApp</button></div>`;$("gCp").onclick=()=>copyText($("gTx").value);$("gWa").onclick=()=>{track("share",o.id,"whatsapp");window.open("https://wa.me/?text="+encodeURIComponent($("gTx").value),"_blank","noopener")}};
  $("gO").onchange=$("gT").onchange=draw;draw()}
 function tSafe(){$("aiB").innerHTML=`<label>Paste a link to check</label><input class="f" id="sU" placeholder="https://..."><button class="btn pri" id="sGo">Check link</button><div id="sOut"></div>`;
@@ -757,6 +758,50 @@ $("aiFab").addEventListener("click",()=>openTool("ask"));
 $("aiB").addEventListener("click",e=>{let b=e.target.closest("[data-open]");if(b){const o=offers.find(x=>x.id==b.dataset.open);if(o){track("click",o.id);window.open(o.link,"_blank","noopener")}}b=e.target.closest("[data-q]");if(b&&window.chatGo)chatGo(b.dataset.q)});
 (function(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition,b=$("micBtn");if(!SR){b.style.display="none";return}b.onclick=()=>{const r=new SR();r.lang=lang==="hi"?"hi-IN":"en-IN";r.onresult=e=>{$("q").value=e.results[0][0].transcript;renderCards();$("offers").scrollIntoView()};r.onerror=()=>{};r.onend=()=>b.classList.remove("on");try{r.start();b.classList.add("on")}catch(e){}}})();
 const _al=applyLang;applyLang=function(){_al.apply(this,arguments);paintTools()};
+
+/* ===== Round 2: hidden admin + more tools ===== */
+Object.assign(T.en,{tOwner:"Owner mode is on for this device",tInstall:"Open your browser menu and tap Add to Home screen"});Object.assign(T.hi,{tOwner:"इस डिवाइस पर ओनर मोड चालू है",tInstall:"ब्राउज़र मेनू खोलें और होम स्क्रीन पर जोड़ें चुनें"});
+Object.assign(N.en,{size:"Text size",install:"Install app",sheet:"Print offer sheet",remind:"Add reminder",poster:"Poster maker",earn:"Earnings estimate"});
+Object.assign(N.hi,{size:"टेक्स्ट साइज़",install:"ऐप इंस्टॉल करें",sheet:"ऑफ़र शीट प्रिंट",remind:"रिमाइंडर जोड़ें",poster:"पोस्टर मेकर",earn:"कमाई का अनुमान"});
+TOOLS.push(["remind","⏰"],["sheet","🖨️"],["size","🔠"],["install","📲"],["poster","🖼️",1],["earn","💰",1]);
+(function(){const b=$("bAdmin");let ok=false;try{ok=localStorage.getItem("hubOwner")==="1"}catch(e){}
+ const show=()=>b.classList.toggle("hid",!(ok||isAdmin)),reveal=()=>{ok=true;try{localStorage.setItem("hubOwner","1")}catch(e){}show()};
+ if(/[?&#]admin(\b|=|$)/i.test(location.search+location.hash))reveal();
+ let c=0,tm;document.querySelector(".brand").addEventListener("click",()=>{c++;clearTimeout(tm);tm=setTimeout(()=>{c=0},1500);if(c>=5){c=0;reveal();toast("tOwner")}});
+ document.addEventListener("keydown",e=>{if(e.ctrlKey&&e.shiftKey&&e.key.toLowerCase()==="a"){e.preventDefault();reveal();toast("tOwner")}});
+ const a0=applyLang;applyLang=function(){a0.apply(this,arguments);show()}})();
+try{if(!localStorage.getItem("hubTheme")&&matchMedia("(prefers-color-scheme: light)").matches)document.documentElement.setAttribute("data-theme","light")}catch(e){}
+let dip=null,sizeI=0;addEventListener("beforeinstallprompt",e=>{e.preventDefault();dip=e});
+try{sizeI=+localStorage.getItem("hubSize")||0}catch(e){}
+function applySize(){document.body.style.zoom=[1,1.12,1.25][sizeI];try{localStorage.setItem("hubSize",sizeI)}catch(e){}}applySize();
+const _ot=openTool;openTool=function(k){if(["poster","earn"].includes(k)&&!isAdmin)return;
+ if(k==="size"){sizeI=(sizeI+1)%3;applySize();return}
+ if(k==="sheet"){track("tool",0,k);window.print();return}
+ if(k==="install"){if(dip){dip.prompt();dip=null}else toast("tInstall");return}
+ if(["remind","poster","earn"].includes(k)){$("aiT").textContent=n(k);$("aiB").innerHTML="";({remind:tRemind,poster:tPoster,earn:tEarn})[k]();openOv("ovAI");track("tool",0,k);return}
+ _ot(k)};
+function ics(o){const d=o.expiry?new Date(o.expiry+"T09:00:00"):new Date(Date.now()+3*864e5);if(o.expiry)d.setDate(d.getDate()-1);const f=x=>x.toISOString().replace(/[-:]/g,"").split(".")[0]+"Z",e=new Date(d.getTime()+36e5);
+ return["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Affiliate Hub//EN","BEGIN:VEVENT","UID:"+o.id+"-"+Date.now()+"@hub","DTSTAMP:"+f(new Date()),"DTSTART:"+f(d),"DTEND:"+f(e),"SUMMARY:"+o.name.replace(/[,;\n]/g," ")+(o.expiry?" offer ends soon":" - finish sign-up"),"DESCRIPTION:Open "+o.link,"BEGIN:VALARM","TRIGGER:-PT15M","ACTION:DISPLAY","DESCRIPTION:Reminder","END:VALARM","END:VEVENT","END:VCALENDAR"].join("\r\n")}
+function tRemind(){const vo=visOffers();$("aiB").innerHTML=vo.length?`<p class="hint">Get a calendar reminder. Works with Google, Apple and Outlook calendars.</p>`+vo.map(o=>`<div class="box" style="margin-top:8px;display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap"><span><b>${esc(o.name)}</b><br><span class="hint" style="margin:0">${o.expiry?"Reminder the day before "+esc(o.expiry):"Reminder in 3 days"}</span></span><button class="btn copy" data-rm="${o.id}">Add reminder</button></div>`).join(""):"<div class='empty'>No offers yet.</div>";
+ $("aiB").querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{const o=offers.find(x=>x.id==b.dataset.rm),u=URL.createObjectURL(new Blob([ics(o)],{type:"text/calendar"})),a=document.createElement("a");a.href=u;a.download="reminder.ics";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),2000);track("tool",o.id,"reminder")})}
+function wrapTx(x,s,w,l,y,lh,max){let ln="",c=0;for(const wd of s.split(" ")){const t=ln?ln+" "+wd:wd;if(x.measureText(t).width>w&&ln){x.fillText(ln,l,y);y+=lh;ln=wd;if(++c>=max)return y}else ln=t}x.fillText(ln,l,y);return y+lh}
+function posterCv(o){const c=document.createElement("canvas");c.width=1080;c.height=1350;const x=c.getContext("2d"),g=x.createLinearGradient(0,0,1080,1350);g.addColorStop(0,"#0b1220");g.addColorStop(1,"#0f766e");x.fillStyle=g;x.fillRect(0,0,1080,1350);
+ x.fillStyle="#2dd4bf";x.font="700 34px sans-serif";x.fillText((o.catEn||"OFFER").toUpperCase(),80,130);x.fillStyle="#fff";x.font="800 84px sans-serif";let y=wrapTx(x,o.name,920,80,250,100,3);x.font="500 44px sans-serif";x.fillStyle="#e8edf7";wrapTx(x,firstLine(o),920,80,y+30,62,4);
+ const m=qrMake(pageUrl()),k=m.length,sc=Math.max(3,Math.floor(300/(k+8))),W=(k+8)*sc,qx=1000-W,qy=1270-W;x.fillStyle="#fff";x.fillRect(qx,qy,W,W);x.fillStyle="#0b1220";for(let r=0;r<k;r++)for(let q=0;q<k;q++)if(m[r][q])x.fillRect(qx+(q+4)*sc,qy+(r+4)*sc,sc,sc);
+ x.fillStyle="#fff";x.font="700 44px sans-serif";x.fillText(profile.name,80,1180);x.fillStyle="#2dd4bf";x.font="600 30px sans-serif";x.fillText("Scan for the step-by-step guide",80,1230);x.fillStyle="#9aa8c3";x.font="500 26px sans-serif";x.fillText("Free to join. Terms apply.",80,1270);return c}
+function tPoster(){const vo=offers.filter(o=>!o.hidden);if(!vo.length){$("aiB").innerHTML="<div class='empty'>No offers yet.</div>";return}
+ $("aiB").innerHTML=`<label>Offer</label><select class="f" id="pO">${vo.map(o=>`<option value="${o.id}">${esc(o.name)}</option>`).join("")}</select><div style="text-align:center"><canvas id="pCv" style="max-width:100%;max-height:60vh;border-radius:12px;border:1px solid var(--line)"></canvas></div><div class="row" style="margin-top:10px"><button class="btn copy" id="pDl">Download PNG</button></div>`;
+ const draw=()=>{const c=posterCv(offers.find(x=>x.id==$("pO").value)),d=$("pCv");d.width=c.width;d.height=c.height;d.getContext("2d").drawImage(c,0,0)};
+ $("pO").onchange=draw;draw();$("pDl").onclick=()=>{const a=document.createElement("a");a.href=$("pCv").toDataURL("image/png");a.download="offer-poster.png";document.body.appendChild(a);a.click();a.remove()}}
+async function tEarn(){$("aiB").innerHTML="<p class='hint'>Loading...</p>";let r;try{r=await loadEvents()}catch(e){$("aiB").innerHTML="<div class='empty'>Could not load tracking data.</div>";return}
+ let pay={},cv=5;try{pay=JSON.parse(localStorage.getItem("hubPay")||"{}");cv=+localStorage.getItem("hubConv")||5}catch(e){}
+ const a=aggregate(r.events.filter(e=>e&&e.t>=periodStart(30,new Date())),offers,new Date(),30);
+ $("aiB").innerHTML=`<p class="hint">Estimate for the last 30 days: clicks x conversion % x your payout per sign-up. Saved only in this browser.</p><label>Expected conversion % (clicks that become sign-ups)</label><input class="f" id="eC" type="number" min="0" max="100" value="${cv}"><div class="sc"><table class="tbl"><tr><th>Offer</th><th>Clicks</th><th>Payout ₹</th><th>Est. ₹</th></tr>${offers.map(o=>`<tr><td>${esc(o.name)}</td><td>${(a.per[o.id]||{}).click||0}</td><td><input class="f ep" data-id="${o.id}" type="number" min="0" value="${pay[o.id]||0}" style="width:90px;margin:0;text-align:right"></td><td class="et" data-id="${o.id}">0</td></tr>`).join("")}</table></div><div class="kpis"><div class="kpi"><b id="eT">₹0</b><span>Estimated total</span></div></div>`;
+ const calc=()=>{const c=+$("eC").value||0;let tot=0;pay={};document.querySelectorAll(".ep").forEach(i=>{const id=i.dataset.id,p=+i.value||0;pay[id]=p;const e=((a.per[id]||{}).click||0)*c/100*p;tot+=e;document.querySelector('.et[data-id="'+id+'"]').textContent=Math.round(e).toLocaleString()});$("eT").textContent="₹"+Math.round(tot).toLocaleString();try{localStorage.setItem("hubPay",JSON.stringify(pay));localStorage.setItem("hubConv",c)}catch(e){}};
+ $("aiB").querySelectorAll("input").forEach(i=>{i.oninput=calc});calc()}
+let otdId=null;function paintOtd(){let el=$("otd");if(!el){document.querySelector(".stats").insertAdjacentHTML("beforebegin",'<div class="box" id="otd" style="display:none;margin-bottom:20px;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between"></div>');el=$("otd");el.onclick=e=>{if(e.target.closest("button")){const o=offers.find(x=>x.id===otdId);if(o){track("click",o.id);window.open(o.link,"_blank","noopener")}}}}
+ const vo=visOffers();if(!vo.length){el.style.display="none";return}const o=vo[Math.floor(Date.now()/864e5)%vo.length];otdId=o.id;el.style.display="flex";el.innerHTML=`<span>⭐ <b>${lang==="hi"?"आज का ऑफ़र":"Offer of the day"}:</b> ${esc(o.name)}<span class="hint" style="display:block;margin:0">${esc(firstLine(o))}</span></span><button class="btn go">${esc(t("openOffer"))}</button>`}
+const a1=applyLang;applyLang=function(){a1.apply(this,arguments);paintOtd()};
 
 applyLang();
 </script></body></html>
