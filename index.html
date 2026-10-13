@@ -803,5 +803,37 @@ let otdId=null;function paintOtd(){let el=$("otd");if(!el){document.querySelecto
  const vo=visOffers();if(!vo.length){el.style.display="none";return}const o=vo[Math.floor(Date.now()/864e5)%vo.length];otdId=o.id;el.style.display="flex";el.innerHTML=`<span>⭐ <b>${lang==="hi"?"आज का ऑफ़र":"Offer of the day"}:</b> ${esc(o.name)}<span class="hint" style="display:block;margin:0">${esc(firstLine(o))}</span></span><button class="btn go">${esc(t("openOffer"))}</button>`}
 const a1=applyLang;applyLang=function(){a1.apply(this,arguments);paintOtd()};
 
+/* ===== Round 3: Auto-fill offer from app name ===== */
+const CATS=[["card",/credit card|\bcard\b|slice|onecard|amex|rupay/i,"Credit Card",["Rewards and cashback on everyday spends","Fuel, travel and lifestyle perks (as per card)"],["Open my referral link","Check eligibility with your mobile number and PAN","Complete KYC and choose your card","Activate the card when it arrives"]],
+["ins",/insur|policy|acko|digit|\blic\b|care health|star health/i,"Insurance",["Simple online cover with quick claims support","Compare plans and pay online"],["Open my referral link","Enter your details and pick a plan","Complete KYC and pay the premium","Download your policy"]],
+["loan",/loan|lend|credit line|kreditbee|moneyview|early ?salary|lazypay/i,"Loans",["Quick online eligibility check","Minimal paperwork, fully digital"],["Open my referral link","Check your eligibility","Complete KYC","Accept the offer for disbursal"]],
+["demat",/dhan|zerodha|groww|upstox|angel|5paisa|fyers|icici ?direct|hdfc sec|motilal|sharekhan|demat|trading|broker|stock/i,"Demat & Trading Account",["Trade stocks, F&O, IPOs and mutual funds in one app","Check the provider's current account-opening offer"],["Open my referral link","Enter your mobile number and verify the OTP","Complete KYC with Aadhaar, PAN and bank details","Finish e-sign and wait for account activation"]],
+["inv",/mutual|\bsip\b|indmoney|et money|kuvera|paytm money|invest|gold|wealth/i,"Investing",["Start investing with small amounts","Track all your investments in one place"],["Open my referral link","Sign up with your mobile number","Complete KYC","Start a SIP or make your first investment"]],
+["upi",/upi|paytm|phonepe|gpay|google pay|bhim|mobikwik|bharatpe|\bcred\b|\bpay\b|wallet|freecharge/i,"UPI & Payments",["Fast UPI payments and bill pay","Look out for scratch cards and cashback offers"],["Open my referral link and install the app","Register with your mobile number","Link your bank account and set a UPI PIN","Make your first payment"]],
+["bank",/bank|kotak|axis|hdfc|icici|sbi|idfc|indusind|yes bank|au small|federal|rbl|jupiter|fi money|niyo|savings|account|811|airtel payments|neobank/i,"Bank Account",["100% digital account opening","Debit card and UPI included"],["Open my referral link","Enter your mobile number and verify the OTP","Complete KYC with Aadhaar and PAN","Fund your account to activate it"]]];
+function localCopy(nm,bn){const c=CATS.find(x=>x[1].test(nm))||[0,0,"Offer",["Simple, quick sign-up","Step-by-step video guide on this page"],["Open my referral link","Enter your mobile number and verify the OTP","Complete the sign-up and KYC","Finish setup to activate it"]];
+ return{cat:c[2],known:!!c[1],ben:`${bn||"Exclusive sign-up benefits"} when you join ${nm} through my link.\n\n* ${c[3][0]}\n* ${c[3][1]}\n* Quick 100% digital sign-up\n\nStart now 👇`,steps:c[4].join("\n"),terms:`This offer is run by ${nm} and may change or end anytime. Benefits apply as per the provider's terms. I never ask for your OTP or password.`}}
+function mkLogo(nm){const c=document.createElement("canvas");c.width=c.height=160;const x=c.getContext("2d");x.fillStyle=badgeColor(nm);x.beginPath();x.roundRect?x.roundRect(0,0,160,160,32):x.rect(0,0,160,160);x.fill();x.fillStyle="#fff";x.font="700 70px sans-serif";x.textAlign="center";x.textBaseline="middle";x.fillText(initials(nm),80,86);return c.toDataURL("image/png")}
+function mkBanner(nm,cat,line){const c=document.createElement("canvas");c.width=900;c.height=500;const x=c.getContext("2d"),g=x.createLinearGradient(0,0,900,500);g.addColorStop(0,"#0b1220");g.addColorStop(1,badgeColor(nm));x.fillStyle=g;x.fillRect(0,0,900,500);
+ x.fillStyle="#2dd4bf";x.font="700 28px sans-serif";x.fillText((cat||"OFFER").toUpperCase(),50,80);x.fillStyle="#fff";x.font="800 70px sans-serif";const y=wrapTx(x,nm,800,50,180,82,2);x.font="500 34px sans-serif";x.fillStyle="#e8edf7";wrapTx(x,line,800,50,y+20,48,3);
+ x.fillStyle="#2dd4bf";x.font="600 26px sans-serif";x.fillText("Free to join  •  Video guide inside",50,455);return c.toDataURL("image/jpeg",.85)}
+let afT=null,afBusy=0;
+async function autoFill(manual){const nm=$("fName").value.trim();if(nm.length<3)return;const my=++afBusy;let g=localCopy(nm,"");let key="";try{key=localStorage.getItem("hubAiKey")||""}catch(e){}
+ if(key&&!g.known){try{const r=await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key="+encodeURIComponent(key),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{parts:[{text:`Indian finance/bank app "${nm}". Return ONLY JSON: cat (short category), ben (2 short lines then 3 lines starting "* ", no invented amounts), steps (array of 4 steps), terms (1-2 honest sentences).`}]}]})});const j=await r.json(),p=JSON.parse(j.candidates[0].content.parts[0].text.replace(/```json|```/g,"").trim());if(p.ben&&p.steps)g={cat:String(p.cat||g.cat),ben:String(p.ben),steps:Array.isArray(p.steps)?p.steps.join("\n"):String(p.steps),terms:String(p.terms||g.terms)}}catch(e){}}
+ if(my!==afBusy||$("fName").value.trim()!==nm)return;
+ const map=[["fCatEn",g.cat],["fBenEn",g.ben],["fStepsEn",g.steps],["fTermsEn",g.terms]],done=[];
+ map.forEach(([id,v])=>{const e=$(id);if(!e.value.trim()||e.dataset.auto==="1"){e.value=v;e.dataset.auto="1";done.push(id)}});
+ offerPairs.forEach(p=>{if(done.includes(p.src))runPair(p,true)});
+ if(!imgState.fLogo||$("fLogoPrev").dataset.auto==="1"){setImg("fLogo",mkLogo(nm));$("fLogoPrev").dataset.auto="1"}
+ if(!imgState.fPoster||$("fPosterPrev").dataset.auto==="1"){setImg("fPoster",mkBanner(nm,$("fCatEn").value||g.cat,g.ben.split("\n")[0]));$("fPosterPrev").dataset.auto="1"}
+ if(manual)toast("tAutoOk")}
+Object.assign(T.en,{tAutoOk:"Auto-filled. You can edit anything."});Object.assign(T.hi,{tAutoOk:"ऑटो-फ़िल हो गया। आप कुछ भी एडिट कर सकते हैं।"});
+["fCatEn","fBenEn","fStepsEn","fTermsEn"].forEach(i=>$(i).addEventListener("input",()=>{$(i).dataset.auto=""}));
+["fLogoUrl","fLogoPick","fLogoClear","fPosterUrl","fPosterPick","fPosterClear"].forEach(i=>$(i).addEventListener(i.endsWith("Url")?"input":"click",()=>{["fLogoPrev","fPosterPrev"].forEach(p=>{if(i.startsWith(p.slice(0,-4)))$(p).dataset.auto=""})}));
+$("fName").addEventListener("input",()=>{clearTimeout(afT);afT=setTimeout(()=>{if(!editId)autoFill(false)},700)});
+$("offerForm").insertAdjacentHTML("beforebegin",`<button type="button" class="btn pri" id="afBtn" style="margin-bottom:12px">✨ Auto-fill with AI</button><p class="hint">Type just the app or bank name. Category, benefits, steps, terms, Hindi text, logo and banner fill in by themselves. Edit anything you like.</p>`);
+$("afBtn").onclick=()=>autoFill(true);
+const _oo=openOffer;openOffer=function(id){_oo(id);["fCatEn","fBenEn","fStepsEn","fTermsEn"].forEach(i=>{$(i).dataset.auto=""});["fLogoPrev","fPosterPrev"].forEach(i=>{$(i).dataset.auto=""})};
+
 applyLang();
 </script></body></html>
